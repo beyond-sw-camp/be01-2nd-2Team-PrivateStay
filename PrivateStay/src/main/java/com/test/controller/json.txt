@@ -1,0 +1,28 @@
+1. 추가
+
+post
+http://localhost:8080/api/business
+{
+  "business_pwd": "33333",
+  "business_name": "강원도 속초",
+  "business_reg_date": "2023-04-01"
+}
+
+
+2. 업데이트
+
+put
+http://localhost:8080/api/business/5
+{
+  "business_code": "5",
+  "business_name": "아산",
+  "business_pwd": "123123123",
+  "business_reg_date": "2018-11-01"
+}
+
+
+3. 삭제
+
+delete
+http://localhost:8080/api/business/5
+
