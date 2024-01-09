@@ -40,12 +40,18 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public String loginUser(@RequestParam String username, @RequestParam String password) {
+	public String showLoginForm() {
+	    return "loginUser_form";
+	}
+	
+	@PostMapping("/login") //http://localhost:8080/main/user/login
+	public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
 		boolean isLogin = userService.loginUser(username, password);
 		
 		if (isLogin) {
             return "forPrivateUser"; //로그인 성공시 유저 메뉴로 이동
         } else {
+        	model.addAttribute("error", "로그인을 실패했습니다.");
             return "loginUser_form"; //로그인 실패 시 로그인 폼을 다시 표시
         }
 	}
