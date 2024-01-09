@@ -10,19 +10,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.entity.Business;
 import com.test.service.BusinessService;
 
 @RestController
-@RequestMapping("api/business")
+@RequestMapping("main/business")
 public class BusinessController {
 	
 	@Autowired
 	private BusinessService businessService;
 	
-	@PostMapping
+	@PostMapping 			// http://localhost:8080/api/business
 	public ResponseEntity<Business> saveBusiness(@RequestBody Business business) {
 	
 		Business saveBusiness = businessService.saveBusiness(business);
@@ -30,14 +31,14 @@ public class BusinessController {
 		return new ResponseEntity<>(saveBusiness, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("{id}") // http://localhost:8080/api/business/1 or 2 or ...
-	public ResponseEntity<Business> getBusinessById(@PathVariable("id") Long businessId) {
+	@GetMapping("{id}")		 // http://localhost:8080/api/business/id입력
+	public ResponseEntity<Business> getBusinessById(@PathVariable("id") String businessId) {
 		Business business =  businessService.getBusinessById(businessId);
 		return ResponseEntity.ok(business);
 	}
 	
-	@PutMapping("{id}")
-    public ResponseEntity<Business> updateBusiness(@PathVariable("id") Long businessId,
+	@PutMapping("{id}")		 // http://localhost:8080/api/business/id입력
+    public ResponseEntity<Business> updateBusiness(@PathVariable("id") String businessId,
                                                    @RequestBody Business updatedBusiness) {
         Business business = businessService.updateBusiness(businessId, updatedBusiness);
         if (business != null) {
@@ -47,9 +48,22 @@ public class BusinessController {
         }
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteBusiness(@PathVariable("id") Long businessId) {
+    @DeleteMapping("{id}")  // http://localhost:8080/api/business/id입력
+    public ResponseEntity<Void> deleteBusiness(@PathVariable("id") String businessId) {
         businessService.deleteBusiness(businessId);
         return ResponseEntity.noContent().build();
     }
+    
+    @GetMapping("/login")
+	public String loginUser(@RequestParam String bId, @RequestParam String bpwd) {
+		boolean isLogin = businessService.loginBusiness(bId, bpwd);
+		
+		if (isLogin) {
+            return "로그인을 성공했습니다."; 
+        } else {
+          
+            return "아이디 또는 비밀번호가 올바르지 않습니다.";
+        }
+		
+	}
 }

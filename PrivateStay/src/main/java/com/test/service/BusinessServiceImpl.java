@@ -14,16 +14,19 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	@Override
 	public Business saveBusiness(Business business) {
+		if(businessRepository.findById(business.getBusiness_code()).isPresent()) {
+			throw new RuntimeException("이미 존재하는 사업자코드입니다.");
+		}
 		return businessRepository.save(business);
 	}
 
 	@Override
-	public Business getBusinessById(Long businessId) {
+	public Business getBusinessById(String businessId) {
 		return businessRepository.findById(businessId).get();
 	}
 
 	@Override
-	public Business updateBusiness(Long businessId, Business updatedBusiness) {
+	public Business updateBusiness(String businessId, Business updatedBusiness) {
 		Business existingBusiness = businessRepository.findById(businessId).orElse(null);
         if (existingBusiness != null) {
             existingBusiness.setBusiness_pwd(updatedBusiness.getBusiness_pwd());
@@ -35,8 +38,15 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public void deleteBusiness(Long businessId) {
+	public void deleteBusiness(String businessId) {
         businessRepository.deleteById(businessId);		
+	}
+
+	@Override
+	public boolean loginBusiness(String businessId, String business_pwd) {
+		return businessRepository.findById(businessId)
+	            .map(business -> business.getBusiness_pwd().equals(business_pwd))
+	            .orElse(false);
 	}
 
 }
