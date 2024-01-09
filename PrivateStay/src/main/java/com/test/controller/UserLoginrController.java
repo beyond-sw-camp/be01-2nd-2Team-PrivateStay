@@ -15,7 +15,7 @@ import com.test.service.UserService;
 
 @Controller
 @RequestMapping("/main/user")
-public class UserController {
+public class UserLoginrController {
 	
 	@Autowired
 	private UserService userService;
