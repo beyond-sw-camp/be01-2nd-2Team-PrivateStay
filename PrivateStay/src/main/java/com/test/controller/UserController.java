@@ -31,9 +31,10 @@ public class UserController {
 		try {
 			userService.joinUser(user);
 			model.addAttribute("message", "가입이 완료되었습니다.");
-			return "forPrivateUser"; // 가입 성공 페이지로 이동
+			return "loginUser_form"; // 가입 성공시 로그인 페이지로 이동
 		} catch (RuntimeException e) {
 			model.addAttribute("error", e.getMessage());
+			System.out.println("회원 가입 실패");
 			return "joinUser_form"; // 가입 실패 시 회원가입 폼을 다시 표시
 		}
 	}
@@ -43,10 +44,9 @@ public class UserController {
 		boolean isLogin = userService.loginUser(username, password);
 		
 		if (isLogin) {
-            return "로그인을 성공했습니다."; 
+            return "forPrivateUser"; //로그인 성공시 유저 메뉴로 이동
         } else {
-          
-            return "아이디 또는 비밀번호가 올바르지 않습니다.";
+            return "loginUser_form"; //로그인 실패 시 로그인 폼을 다시 표시
         }
 	}
 }
