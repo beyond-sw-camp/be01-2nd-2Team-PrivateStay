@@ -13,7 +13,6 @@ import com.test.entity.User;
 import com.test.service.UserService;
 
 
-
 @Controller
 @RequestMapping("/main/user")
 public class UserController {
@@ -27,7 +26,7 @@ public class UserController {
         return "joinUser_form"; // Thymeleaf 템플릿 파일의 이름
     }
 	
-	@PostMapping("/join") //http://localhost:8080/main/join
+	@PostMapping("/join") //http://localhost:8080/main/user/join
 	public String joinUser(@ModelAttribute User user, Model model){
 		try {
 			userService.joinUser(user);
