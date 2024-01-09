@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.test.entity.User;
 import com.test.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class UserServiceImpl implements UserService{
 	
@@ -28,9 +30,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User updateUser(String userId, User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public User updateUser(HttpSession session, User user) {
+		String userId = (String) session.getAttribute("userId");
+		Optional<User> loginUser = userRepository.findById(userId);
+		User updatedUser = loginUser.get();
+		updatedUser.setUser_pwd(user.getUser_pwd());
+		return userRepository.save(updatedUser);
 	}
 
 	@Override

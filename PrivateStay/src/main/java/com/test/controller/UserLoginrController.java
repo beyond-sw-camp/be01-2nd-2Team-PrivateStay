@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.test.entity.User;
 import com.test.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/main/user")
@@ -45,10 +47,12 @@ public class UserLoginrController {
 	}
 	
 	@PostMapping("/login") //http://localhost:8080/main/user/login
-	public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
-		boolean isLogin = userService.loginUser(username, password);
+	public String loginUser(@RequestParam String userid, @RequestParam String password, Model model, HttpSession session) {
+		boolean isLogin = userService.loginUser(userid, password);
 		
 		if (isLogin) {
+			session.setAttribute("userId", userid);
+			System.out.println("session 정보: " + (String) session.getAttribute("userId"));
             return "forPrivateUser"; //로그인 성공시 유저 메뉴로 이동
         } else {
         	model.addAttribute("error", "로그인을 실패했습니다.");
