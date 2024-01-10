@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>개인 회원 가입 페이지</title>
+</head>
+<body>
+	<form th:action="@{/main/user/join}" th:object="${user}" method="post">
+            <div class="mb-3">
+                <label for="user_id" class="form-label">사용자ID</label>
+                <input type="text" id="user_id" name="user_id" th:field="*{user_id}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="user_pwd" class="form-label">비밀번호</label>
+                <input type="password" id="user_pwd" name="user_pwd" th:field="*{user_pwd}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="user_name" class="form-label">이름</label>
+                <input type="text" id="user_name" name="user_name" th:field="*{user_name}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="user_gender" class="form-label">성별</label>
+                <input type="text" id="user_gender" name="user_gender" th:field="*{user_gender}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="user_age" class="form-label">나이</label>
+                <input type="number" id="user_age" name="user_age" th:field="*{user_age}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="user_reg_date" class="form-label">등록일자</label>
+                <input type="date" id="user_reg_date" name="user_reg_date" th:field="*{user_reg_date}" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">회원가입</button>
+            
+            <div th:if="${error}" class="alert alert-danger">
+    			<p th:text="${error}"></p>
+			</div>   
+        </form>
+</body>
+</html>
