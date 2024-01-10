@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <div><a href="joinUser_form.html">개인</a></div>
+    <div><a th:href="@{/main/user/join}">개인</a></div>  
     <div><a href="forBusinessUser.html">사업자</a></div>
-    
 </body>
 </html>

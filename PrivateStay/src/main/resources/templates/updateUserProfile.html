@@ -10,7 +10,7 @@
 	    <div th:if="${user}">
 	        <p>ID: <span th:text="${user.user_id}">user_id</span></p>
 	        <p>Name: <span th:text="${user.user_name}">user_name</span></p>
-	        <p>Password: <input type="text" th:value="${user.user_pwd}" name="userPwd" /></p>
+	        <p>Password: <input type="password" th:value="${user.user_pwd}" name="userPwd" /></p>
 	        <p>Gender: <span th:text="${user.user_gender}">user_gender</span></p>
 	        <p>Age: <span th:text="${user.user_age}">user_age</span></p>
 	        <p>regDate: <span th:text="${user.user_reg_date}">user_reg_date</span></p>
@@ -20,6 +20,9 @@
 	    <div th:unless="${user}">
 	        <p>로그인이 필요합니다.</p>
 	    </div>
+	    
+	    <button type="submit">Update Profile</button>
+	    
     </form>
 </body>
 </html>

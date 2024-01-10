@@ -35,5 +35,10 @@ public class UserController {
         return "updateUserProfile"; // Thymeleaf 템플릿 파일의 이름
     }
 	
+	public String updateUserProfile() {
+		
+		return "updateUserProfile";
+	}
+	
 	
 }
