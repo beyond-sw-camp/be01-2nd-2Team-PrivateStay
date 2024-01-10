@@ -30,11 +30,11 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User updateUser(HttpSession session, User user) {
-		String userId = (String) session.getAttribute("userId");
+	public User updateUser(String userId, User user) {
 		Optional<User> loginUser = userRepository.findById(userId);
 		User updatedUser = loginUser.get();
 		updatedUser.setUser_pwd(user.getUser_pwd());
+		updatedUser.setUser_age(user.getUser_age());
 		return userRepository.save(updatedUser);
 	}
 

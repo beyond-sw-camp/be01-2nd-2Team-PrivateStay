@@ -59,4 +59,10 @@ public class UserLoginrController {
             return "loginUser_form"; //로그인 실패 시 로그인 폼을 다시 표시
         }
 	}
+	
+	@GetMapping("/logout")
+	public String logoutUser(HttpSession session) {
+		session.invalidate(); // 세션 무효화
+		return "redirect:/main/user/login"; //로그인 페이지로 이동
+	}
 }
