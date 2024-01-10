@@ -29,7 +29,7 @@ public class CompanyController {
 	
 	
 	@GetMapping("{id}") //http://localhost:8081/api/department/2
-	public ResponseEntity<Company> getDepartmentById(@PathVariable("id") int companyCode){
+	public ResponseEntity<Company> getCompanyByCode(@PathVariable("id") int companyCode){
 		Company company = companyService.getCompanyByCode(companyCode);
 		return ResponseEntity.ok(company);
 	}
