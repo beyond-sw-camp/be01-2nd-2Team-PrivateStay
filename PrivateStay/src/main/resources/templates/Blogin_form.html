@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사업자 로그인 페이지</title>
+</head>
+<body>
+	<form th:action="@{/main/business/login}" method="post">
+        <div>
+            <label for="bId">사업자코드 : </label>
+            <input type="text" id="bId" name="bId">
+        </div>
+        <div>
+            <label for="bpwd">비밀번호 : </label>
+            <input type="password" id="bpwd" name="bpwd">
+        </div>
+        <div>
+            <button type="submit">로그인</button>
+        </div>
+            <div th:if="${error}" class="alert alert-danger">
+    			<p th:text="${error}"></p>
+			</div>   
+   	</form>
+</body>
+</html>
