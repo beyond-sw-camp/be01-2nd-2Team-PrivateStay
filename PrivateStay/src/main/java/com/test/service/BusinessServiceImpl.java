@@ -21,13 +21,13 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public Business getBusinessById(String businessId) {
-		return businessRepository.findById(businessId).get();
+	public Business getBusinessByCode(String bId) {
+		return businessRepository.findById(bId).get();
 	}
 
 	@Override
-	public Business updateBusiness(String businessId, Business updatedBusiness) {
-		Business existingBusiness = businessRepository.findById(businessId).orElse(null);
+	public Business updateBusiness(String bId, Business updatedBusiness) {
+		Business existingBusiness = businessRepository.findById(bId).orElse(null);
         if (existingBusiness != null) {
             existingBusiness.setBusiness_pwd(updatedBusiness.getBusiness_pwd());
             existingBusiness.setBusiness_name(updatedBusiness.getBusiness_name());
@@ -38,14 +38,14 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public void deleteBusiness(String businessId) {
-        businessRepository.deleteById(businessId);		
+	public void deleteBusiness(String bId) {
+        businessRepository.deleteById(bId);		
 	}
 
 	@Override
-	public boolean loginBusiness(String businessId, String business_pwd) {
-		return businessRepository.findById(businessId)
-	            .map(business -> business.getBusiness_pwd().equals(business_pwd))
+	public boolean loginBusiness(String bId, String bpwd) {
+		return businessRepository.findById(bId)
+	            .map(business -> business.getBusiness_pwd().equals(bpwd))
 	            .orElse(false);
 	}
 
