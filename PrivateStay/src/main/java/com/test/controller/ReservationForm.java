@@ -1,4 +1,4 @@
-package jpa.privatestay.domain.controller;
+package com.test.controller;
 
 import lombok.Getter;
 import lombok.Setter;
