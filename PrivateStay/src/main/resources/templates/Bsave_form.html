@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사업자 회원 가입 페이지</title>
+</head>
+<body>
+	<form th:action="@{/main/business/save}" th:object="${business}" method="post">
+            <div class="mb-3">
+                <label for="business_code" class="form-label">사업자 코드</label>
+                <input type="text" id="business_code" name="business_code" th:field="*{business_code}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="business_pwd" class="form-label">비밀 번호</label>
+                <input type="password" id="business_pwd" name="business_pwd" th:field="*{business_pwd}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="business_name" class="form-label">이   름</label>
+                <input type="text" id="business_name" name="business_name" th:field="*{business_name}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="business_reg_date" class="form-label">가입 일자</label>
+                <input type="text" id="business_reg_date" name="business_reg_date" th:field="*{business_reg_date}" class="form-control">
+            
+            <button type="submit" class="btn btn-primary">회원가입</button>
+            
+            <div th:if="${error}" class="alert alert-danger">
+    			<p th:text="${error}"></p>
+			</div>   
+        </form>
+</body>
+</html>
