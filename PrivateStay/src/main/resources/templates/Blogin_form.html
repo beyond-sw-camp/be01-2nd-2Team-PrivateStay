@@ -6,20 +6,52 @@
 </head>
 <body>
 	<form th:action="@{/main/business/login}" method="post">
-        <div>
+		<div>
+			<label for="bId">사업자코드 : </label> <input type="text" id="bId"
+				name="bId">
+		</div>
+		<div>
+			<label for="bpwd">비밀번호 : </label> <input type="password" id="bpwd"
+				name="bpwd">
+		</div>
+		<div>
+			<button type="submit">로그인</button>
+		</div>
+		<div th:if="${error}" class="alert alert-danger">
+			<p th:text="${error}"></p>
+		</div>
+	</form>
+</body>
+<!-- 뒤로가기 버튼 -->
+<button onclick="goBack()">뒤로 가기</button>
+
+<script>
+	// 뒤로가기 함수
+	function goBack() {
+		window.history.back();
+	}
+</script>
+
+</html>
+
+<!-- <html layout:decorate="~{layout}">
+
+<div layout:fragment="content" class="container my-3">
+    <form th:action="@{/main/business/login}" method="post">
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                사용자ID 또는 비밀번호를 확인해 주세요.
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="bId">사업자코드 : </label>
             <input type="text" id="bId" name="bId">
         </div>
-        <div>
+        <div class="mb-3">
             <label for="bpwd">비밀번호 : </label>
             <input type="password" id="bpwd" name="bpwd">
         </div>
-        <div>
-            <button type="submit">로그인</button>
-        </div>
-            <div th:if="${error}" class="alert alert-danger">
-    			<p th:text="${error}"></p>
-			</div>   
-   	</form>
-</body>
-</html>
+        <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
+</div>
+</html> -->
