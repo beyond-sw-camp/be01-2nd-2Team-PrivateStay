@@ -18,7 +18,7 @@
 	        <p>로그인이 필요합니다.</p>
 	    </div>
 	    
-	    <button type="submit">Update Profile</button>
+	    <button type="submit">수정 완료</button>
 	    
 	    
 	    <div th:if="${message}" class="alert alert-success">
@@ -29,5 +29,14 @@
 		</div>   
 	    
     </form>
+    <!-- <a th:href="@{BforPrivate.html}" class="btn btn-primary">메뉴로 이동</a> -->
+    <button onclick="goBack()">메   뉴</button>
+
+<script>
+	// 뒤로가기 함수
+	function goBack() {
+		window.history.back();
+	}
+</script>
 </body>
 </html>
