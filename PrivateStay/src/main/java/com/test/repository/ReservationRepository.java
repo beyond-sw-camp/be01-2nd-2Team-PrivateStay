@@ -1,10 +1,8 @@
-package com.test.controller;
-
-import com.test.entity.Reservation;
+package java.com.test.repository;
+import  java.com.test.entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
