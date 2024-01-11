@@ -1,4 +1,4 @@
-package jpa.privatestay.domain;
+package com.test.controller;
 import jakarta.persistence.*;
 import jpa.privatestay.domain.etc.NotEnoughStockException;
 import lombok.Getter;
