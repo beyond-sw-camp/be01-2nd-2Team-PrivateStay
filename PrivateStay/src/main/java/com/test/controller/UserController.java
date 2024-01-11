@@ -15,7 +15,7 @@ import com.test.service.UserService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/main/user/menu")
+@RequestMapping("/user/menu")
 public class UserController {
 	
 	@Autowired

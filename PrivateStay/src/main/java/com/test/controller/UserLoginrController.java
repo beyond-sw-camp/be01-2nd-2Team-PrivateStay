@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("/main/user")
+@RequestMapping("/user")
 public class UserLoginrController {
 	
 	@Autowired

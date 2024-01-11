@@ -5,7 +5,7 @@
 <title>개인 회원 가입 페이지</title>
 </head>
 <body>
-	<form th:action="@{/main/user/join}" th:object="${user}" method="post">
+	<form th:action="@{/user/join}" th:object="${user}" method="post">
             <div class="mb-3">
                 <label for="user_id" class="form-label">사용자ID</label>
                 <input type="text" id="user_id" name="user_id" th:field="*{user_id}" class="form-control">
