@@ -1,6 +1,6 @@
 package com.test.controller;
 import jakarta.persistence.*;
-import jpa.privatestay.domain.etc.NotEnoughStockException;
+import com.test.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
