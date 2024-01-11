@@ -1,5 +1,8 @@
 package com.test.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +33,12 @@ public class UserLoginrController {
 	
 	@PostMapping("/join") //http://localhost:8080/main/user/join
 	public String joinUser(@ModelAttribute User user, Model model){
+		LocalDate currentDate = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String formattedDate = currentDate.format(formatter);
+
 		try {
+			user.setUser_reg_date(formattedDate);
 			userService.joinUser(user);
 			model.addAttribute("message", "가입이 완료되었습니다.");
 			return "loginUser_form"; // 가입 성공시 로그인 페이지로 이동
