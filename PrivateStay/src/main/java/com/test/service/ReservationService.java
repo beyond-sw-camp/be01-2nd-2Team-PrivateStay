@@ -1,20 +1,16 @@
-package jpa.privatestay.domain.service;
-import jpa.privatestay.domain.etc.NoSuchReservationException;
-import jpa.privatestay.domain.etc._ReservationSearch;
-
-import jpa.privatestay.domain.etc.NotEnoughStockException;
-import jpa.privatestay.domain.Reservation;
-import jpa.privatestay.domain.Stock;
-import jpa.privatestay.domain.User;
-import jpa.privatestay.domain.repository.ReservationRepository;
-import jpa.privatestay.domain.repository.UserRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
+package java.com.test.service;
+import java.com.test.exception.NotEnoughStockException;
+import java.com.test.entity.Reservation;
+import java.com.test.entity.Stock;
+import java.com.test.entity.User;
+import java.com.test.repository.ReservationRepository;
+import java.com.test.repository.StockRepository;
+import java.com.test.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -25,25 +21,17 @@ public class ReservationService {
     private final StockRepository stockRepository;
     //new order
     @Transactional
-    public Integer reservation(String userId, Integer headCount, String status, Integer sCode) throws NotEnoughStockException {
-        User user = userRepository.findOne(userId);
-        Stock stock = stockRepository.findOne(sCode);
-
+    public Integer reservation(String userId, Integer headCount, String status, String sCode) throws NotEnoughStockException {
+        User user = userRepository.findById(userId).get();
+        Stock stock = stockRepository.findById(sCode).get();
         Reservation reservation = Reservation.createReservation(user, headCount, status, stock);
         reservationRepository.save(reservation);
         return reservation.getId();
     }
     //cancel
     @Transactional
-    public void cancelReservation(Integer reservId) throws  NoSuchReservationException {
-        Optional<Reservation> optionalReservation = reservationRepository.findById(reservId);
-
-        if (optionalReservation.isPresent()) {
-            Reservation reservation = optionalReservation.get();
-            reservation.cancelReservation();
-        } else {
-            throw new NoSuchReservationException("no such reservation found");
-        }
+    public void cancelReservation(Integer reservId)  {
+        Reservation reservation = reservationRepository.findById(reservId).get();
 
     }
     public List<Reservation> findReservationsByUserIdandStatus(String userId, String status) {
