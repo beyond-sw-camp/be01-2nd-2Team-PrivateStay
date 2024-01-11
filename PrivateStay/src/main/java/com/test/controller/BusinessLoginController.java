@@ -22,13 +22,13 @@ public class BusinessLoginController {
 	private BusinessService businessService;
 
 	@GetMapping("/save")
-	public String showJoinForm(Model model) {
+	public String showSaveForm(Model model) {
 		model.addAttribute("business", new Business());
 		return "Bsave_form";
 	}
 
 	@PostMapping("/save") // http://localhost:8080/main/business/join
-	public String joinBusiness(@ModelAttribute Business business, Model model) {
+	public String SaveBusiness(@ModelAttribute Business business, Model model) {
 		try {
 			businessService.saveBusiness(business);
 			model.addAttribute("message", "가입이 완료되었습니다.");
