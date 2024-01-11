@@ -1,12 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button-user {
+            background-color: #00008B;
+            color: #ffffff;
+        }
+
+        .button-business {
+            background-color: #008B8B;
+            color: #ffffff;
+        }
+
+        .button-link:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
-    <div><a th:href="@{/main/user/login}">개인</a></div>  
-    <div><a href="forBusinessUser.html">사업자</a></div>
+    <a href="/main/user/login" class="button-link button-user">개인</a>
+    <a href="/main/business/login" class="button-link button-business">사업자</a>
 </body>
 </html>
