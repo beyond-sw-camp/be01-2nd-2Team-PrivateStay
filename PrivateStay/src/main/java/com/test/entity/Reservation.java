@@ -1,7 +1,7 @@
 package com.test.entity;
 
 import jakarta.persistence.*;
-import java.com.test.exception.NotEnoughStockException;
+import com.test.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
