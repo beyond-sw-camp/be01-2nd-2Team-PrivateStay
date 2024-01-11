@@ -1,9 +1,10 @@
-package com.test.controller;
+package java.com.test.entity;
 import jakarta.persistence.*;
-import com.test.exception.NotEnoughStockException;
+import java.com.test.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @Table(name = "reservation")
@@ -29,6 +30,7 @@ public class Reservation {
     //**********************************************
     private LocalDateTime currTimeStamp;
     private Integer headcount;
+
     public void setUser(User user) {
         this.user = user;
         user.getReservations().add(this);
@@ -47,12 +49,12 @@ public class Reservation {
         stock.setQuantity(false);
         reservation.setHeadcount(headcount);
         reservation.setCurrTimeStamp(LocalDateTime.now());
-        //....?
-        if (status.equals("on hold")) {
+
+        if (status.equals("onHold")) {
             reservation.setStatus(ReservationStatus.ON_HOLD);
         } else if (status.equals("reserved")) {
             reservation.setStatus(ReservationStatus.RESERVED);
-        } else {
+        } else { // "canceled
             reservation.setStatus(ReservationStatus.CANCELED);
         }
         return reservation;
