@@ -1,4 +1,5 @@
-package java.com.test.entity;
+package com.test.entity;
+
 import jakarta.persistence.*;
 import java.com.test.exception.NotEnoughStockException;
 import lombok.Getter;
