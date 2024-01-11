@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사업자 메뉴입니다.</title>
+</head>
+<body>
+-=-=-=-=-= 무엇을 하실 것인지 선택해 주세요. =-=-=-=-=-
+    <div><a th:href="@{/main/business/menu/profile}">1. 사업자 정보 수정</a></div>
+    <div><a th:href="@{/main/business/menu/profile}">2. 내 사업장 관리</div>
+    <div><a th:href="@{/main/business/menu/profile}">3. 상품 예약 조회</div>
+    <div><a th:href="@{/main/business/logout}">4. 로그아웃</div>
+</body>
+</html>
