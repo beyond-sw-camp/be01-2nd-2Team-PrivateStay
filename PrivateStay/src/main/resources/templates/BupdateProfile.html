@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Business Profile</title>
+</head>
+<body>
+	<form th:action="@{/main/business/menu/profile}" method="post">
+	    <h1>Business Profile</h1>
+	
+	    <div th:if="${business}">
+	        <p>ID: <span th:text="${business.business_code}">business_code</span></p>
+	        <p>Name: <input type="text" th:value="${business.business_name}" name="business_name" /></p>
+	        <p>Password: <input type="password" th:value="${business.business_pwd}" name="business_pwd" /></p>
+	        <p>regDate: <input type="text" th:value="${business.business_reg_date}" name="business_reg_date" /></p>
+	    </div>
+
+	    <div th:unless="${business}">
+	        <p>로그인이 필요합니다.</p>
+	    </div>
+	    
+	    <button type="submit">Update Profile</button>
+	    
+	    
+	    <div th:if="${message}" class="alert alert-success">
+    		<p th:text="${message}"></p>
+		</div>   
+	    <div th:if="${error}" class="alert alert-danger">
+    		<p th:text="${error}"></p>
+		</div>   
+	    
+    </form>
+</body>
+</html>
