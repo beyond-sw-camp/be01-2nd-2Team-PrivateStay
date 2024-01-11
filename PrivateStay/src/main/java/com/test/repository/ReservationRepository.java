@@ -1,4 +1,5 @@
-package java.com.test.repository;
+package com.test.repository;
+
 import  java.com.test.entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
