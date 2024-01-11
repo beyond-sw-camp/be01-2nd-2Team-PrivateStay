@@ -1,10 +1,9 @@
-package java.com.test.controller;
-
-import java.com.test.entity.Reservation;
-import java.com.test.entity.User;
+package com.test.controller;
+import com.test.entity.Reservation;
+import com.test.entity.User;
 import jpa.privatestay.domain.exception.NoSuchReservationException;
 import jpa.privatestay.domain.exception.NotEnoughStockException;
-import java.com.test.service.ReservationService;
+import com.test.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
