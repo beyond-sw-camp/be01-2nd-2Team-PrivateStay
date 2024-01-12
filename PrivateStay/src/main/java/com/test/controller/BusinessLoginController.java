@@ -15,7 +15,7 @@ import com.test.service.BusinessService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("main/business")
+@RequestMapping("/business")
 public class BusinessLoginController {
 
 	@Autowired
@@ -63,7 +63,22 @@ public class BusinessLoginController {
 	@GetMapping("/logout")
 	public String logoutBusiness(HttpSession session) {
 		session.invalidate(); // 세션 무효화
-		return "redirect:/main/business/login"; //로그인 페이지로 이동
+		return "redirect:/business/login"; //로그인 페이지로 이동
+	}
+	
+	@GetMapping("/BforPrivate")
+	public String showBforPrivate(Model model, HttpSession session) {
+		String bId = (String) session.getAttribute("bId");
+		
+		if (bId != null) {
+	        Business currentbusiness = businessService.getBusinessByCode(bId);
+	        model.addAttribute("business", currentbusiness);
+	    } else {
+	    	System.out.println("유효하지 않은 접근입니다.");
+	    	return "redirect:/main/business/login"; //로그인 페이지로 이동
+	    }
+		
+        return "BforPrivate";
 	}
 }
 
