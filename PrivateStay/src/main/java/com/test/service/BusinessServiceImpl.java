@@ -14,7 +14,7 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	@Override
 	public Business saveBusiness(Business business) {
-		if(businessRepository.findById(business.getBusiness_code()).isPresent()) {
+		if(businessRepository.findById(business.getBusinessCode()).isPresent()) {
 			throw new RuntimeException("이미 존재하는 사업자코드입니다.");
 		}
 		return businessRepository.save(business);
