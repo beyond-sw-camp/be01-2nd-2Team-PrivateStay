@@ -1,16 +1,16 @@
 package com.test.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.entity.Business;
 import com.test.entity.Company;
@@ -82,6 +82,80 @@ public class CompanyController {
 	    
 	    return "Csave_form";
 	}
+	
+	@GetMapping("/list")
+	public String listAllCompanies(Model model, HttpSession session) {
+	    String bId = (String) session.getAttribute("bId");
+
+	    if (bId == null) {
+	        return "redirect:/business/login";
+	    }
+
+	    try {
+	        List<Company> companies = companyService.findAllCompaniesByBusinessCode(bId);
+	        model.addAttribute("companies", companies); // 조회한 사업장 리스트를 모델에 추가
+	    } catch (Exception e) {
+	        // 오류 처리
+	        model.addAttribute("error", "사업장 조회 중 오류가 발생했습니다.");
+	    }
+
+	    return "Clist"; // 사업장 목록을 보여주는 뷰 페이지 이름
+	}
+
+	
+	@GetMapping("/select")
+	public String showSelectForm(HttpSession session) {
+	    if (session.getAttribute("bId") == null) {
+	        System.out.println("사업자 인증이 필요합니다.");
+	        return "redirect:/business/login";
+	    }
+	    return "Cselect";
+	}
+
+	@GetMapping("/edit") // 사업장 수정 폼 보기
+	public String updateCompanyForm(@RequestParam("company_code") int cCode, Model model, HttpSession session) {
+	    String bId = (String) session.getAttribute("bId");
+	    if (bId == null) {
+	        return "redirect:/business/login"; // 로그인 페이지로 이동
+	    }
+
+	    Company company = companyService.getCompanyByCode(cCode);
+	    if (company != null && company.getBusiness().getBusinessCode().equals(bId)) {
+	        model.addAttribute("company", company);
+	        return "Cupdate"; // 수정 폼 페이지로 이동
+	    } else {
+	        return "redirect:/company/menu"; // 권한 없음 혹은 사업장을 찾을 수 없음
+	    }
+	}
+
+	@PostMapping("/edit/{cCode}") // 사업장 정보 업데이트
+	public String updateCompany(@PathVariable int cCode, @ModelAttribute Company updatedCompany, HttpSession session, Model model) {
+	    String bId = (String) session.getAttribute("bId");
+	    if (bId == null) {
+	        return "redirect:/business/login"; // 로그인 페이지로 이동
+	    }
+
+	    try {
+	        Company existingCompany = companyService.getCompanyByCode(cCode);
+	        if (!existingCompany.getBusiness().getBusinessCode().equals(bId)) {
+	            model.addAttribute("error", "권한이 없습니다.");
+	            return "redirect:/company/menu";
+	        }
+
+	        existingCompany.setCompany_name(updatedCompany.getCompany_name());
+	        existingCompany.setCompany_addr(updatedCompany.getCompany_addr());
+	        companyService.saveCompany(existingCompany);
+
+	        model.addAttribute("company", existingCompany);
+	        model.addAttribute("message", "사업장 정보가 업데이트되었습니다.");
+	        return "Cupdate";
+	    } catch (Exception e) {
+	        model.addAttribute("error", "사업장 정보 업데이트에 실패했습니다.");
+	        return "Cupdate";
+	    }
+	}
+
+
 	
 }
 
