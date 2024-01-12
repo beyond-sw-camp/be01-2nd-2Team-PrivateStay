@@ -7,8 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.test.entity.Product;
+import com.test.entity.Stock;
 
-public interface StockRepository extends JpaRepository<Product, Integer>{ //Type, Key
+public interface StockRepository extends JpaRepository<Stock, Integer>{
+
+	Stock findByStockCode(String stockCode); //Type, Key
 
 }
  
