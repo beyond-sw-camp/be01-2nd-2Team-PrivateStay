@@ -3,16 +3,18 @@ package com.test.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.entity.Company;
 import com.test.entity.Product;
+import com.test.service.ProductService;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import com.test.repository.CompanyRepository;
 import com.test.repository.ProductRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
  
 @Service
@@ -74,6 +76,7 @@ public class ProductServiceImpl implements ProductService {
 	    productRepository.save(product);
 	}
 	
+
 	@Override
 	public void deleteProductById(int productCode) {
 		productRepository.deleteById(productCode);
