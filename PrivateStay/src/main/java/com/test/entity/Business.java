@@ -1,10 +1,14 @@
 package com.test.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,5 +32,8 @@ public class Business {
 	
 	@Column(name = "business_reg_date", nullable = false)
 	private LocalDate business_reg_date;
+	
+	@OneToMany(mappedBy = "business", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Company> companies = new ArrayList<>();
 	
 }
