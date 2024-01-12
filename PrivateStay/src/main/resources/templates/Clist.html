@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>사업장 목록</title>
+    <!-- 스타일시트나 JavaScript 파일을 여기에 포함시킬 수 있습니다 -->
+</head>
+<body>
+    <h1>사업장 목록</h1>
+    
+    <div th:if="${error}">
+        <p th:text="${error}" class="error"></p>
+    </div>
+    
+    <div th:if="${companies}">
+        <table>
+            <thead>
+                <tr>
+                    <th>사업장 코드</th>
+                    <th>사업장 이름</th>
+                    <th>사업장 주소</th>
+                    <!-- 필요한 다른 헤더를 추가할 수 있습니다 -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="company : ${companies}">
+                    <td th:text="${company.company_code}">사업장 코드</td>
+                    <td th:text="${company.company_name}">사업장 이름</td>
+                    <td th:text="${company.company_addr}">사업장 주소</td>
+                    <!-- 필요한 다른 데이터를 추가할 수 있습니다 -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div th:unless="${companies}">
+        <p>등록된 사업장이 없습니다.</p>
+    </div>
+    
+    <!-- 기타 페이지 내용 및 링크 -->
+</body>
+</html>
