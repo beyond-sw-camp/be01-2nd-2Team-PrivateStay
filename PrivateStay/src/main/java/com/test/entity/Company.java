@@ -1,7 +1,9 @@
 package com.test.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,22 +19,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Company {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "company_code")
-    private int companyCode;
+    @Column(name = "company_code", nullable = false)
+    private int company_code;
     
-    @Column(name = "business_code2")
-    private String businessCode;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "business_code")
+//  @Column(name = "business_code", nullable = false)
+    private Business business;
     
-    @Column(name = "company_name")
-    private String companyName;
+    @Column(name = "company_name", nullable = false)
+    private String company_name;
 
     @Column(name = "company_addr")
-    private String companyAddr;
-
-//    @ManyToOne
-//    @JoinColumn(name = "business_code2", referencedColumnName = "business_code")
-//    private Business business;
+    private String company_addr;
 
 }
