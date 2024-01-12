@@ -5,7 +5,7 @@
 <title>사업자 회원 가입 페이지</title>
 </head>
 <body>
-	<form th:action="@{/main/business/save}" th:object="${business}" method="post">
+	<form th:action="@{/business/save}" th:object="${business}" method="post">
             <div class="mb-3">
                 <label for="business_code" class="form-label">사업자 코드</label>
                 <input type="text" id="business_code" name="business_code" th:field="*{business_code}" class="form-control">
@@ -22,11 +22,11 @@
                 <label for="business_reg_date" class="form-label">가입 일자</label>
                 <input type="text" id="business_reg_date" name="business_reg_date" th:field="*{business_reg_date}" class="form-control">
             
-            <button type="submit" class="btn btn-primary">회원가입</button>
+            <button type="submit" class="btn btn-primary">회원 가입</button>
             
             <div th:if="${error}" class="alert alert-danger">
     			<p th:text="${error}"></p>
 			</div>   
-        </form>
+        
 </body>
 </html>
