@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>product Info Input</title>
+</head>
+<body>
+	<form  th:action="@{/stock/save/{selectedYear}/{selectedMonth}/{&selectedDay}/{productCode}`;}" method="post">
+        <div>
+            <label for="productCode">product code:</label>
+            <input type="text" id="productCode" name="productCode">
+        </div>
+        <div>
+            <label for="stockQuantity">예약 가능 여부 (가능 = 1, 불가능 = 0):</label>
+            <input type="text" id="stockQuantity" name="stockQuantity">
+        </div>
+        
+        <div>
+            <button type="submit">submit</button>
+        </div>
+            <div th:if="${error}" class="alert alert-danger">
+    			<p th:text="${error}"></p>
+			</div>   
+   	</form>
+</body>
+</html>
