@@ -35,5 +35,16 @@ public class Business {
 	
 	@OneToMany(mappedBy = "business", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Company> companies = new ArrayList<>();
+	@Override
+	public String toString() {
+	    return "Business{" +
+	           "business_code='" + business_code + '\'' +
+	           ", business_pwd='" + business_pwd + '\'' +
+	           ", business_name='" + business_name + '\'' +
+	           ", business_reg_date=" + business_reg_date +
+	           // companies 필드는 간단한 정보만 출력하도록 수정
+	           ", companies=" + companies.stream().map(Company::getCompany_name).toList() +
+	           '}';
+	}
 	
 }
