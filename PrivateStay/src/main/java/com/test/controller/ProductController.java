@@ -1,7 +1,5 @@
 package com.test.controller;
 
-import java.net.http.HttpRequest;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -179,6 +179,23 @@ public class ProductController implements ErrorController {
 	public ResponseEntity<Product> getProductById(@PathVariable("id") int productCode) {
 		Product product = productService.getProductById(productCode);
 		return ResponseEntity.ok(product);
+	}
+	
+	@DeleteMapping("/delete/{id}") //http://www.localhost.com:8080/product/delete
+	public ResponseEntity deleteUser(@PathVariable int id) {
+		productService.deleteProductById(id);
+		return new ResponseEntity<>("상품 삭제가 성공적으로 완료되었습니다.", HttpStatus.OK);
+	}
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity update(@PathVariable int id, @RequestBody Product product) {
+	    Product updatedProduct = productService.updateProductById(id, product);
+	    
+	    if (updatedProduct != null) {
+	        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+	    }
 	}
 
 }
