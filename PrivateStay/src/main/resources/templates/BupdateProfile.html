@@ -8,7 +8,7 @@
 	    <h1>Business Profile</h1>
 	
 	    <div th:if="${business}">
-	        <p>ID: <span th:text="${business.business_code}">business_code</span></p>
+	        <p>ID: <span th:text="${business.businessCode}">business_code</span></p>
 	        <p>Name: <input type="text" th:value="${business.business_name}" name="business_name" /></p>
 	        <p>Password: <input type="password" th:value="${business.business_pwd}" name="business_pwd" /></p>
 	        <p>regDate: <input type="text" th:value="${business.business_reg_date}" name="business_reg_date" /></p>
