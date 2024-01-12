@@ -14,7 +14,7 @@ import com.test.service.BusinessService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/main/business/menu")
+@RequestMapping("/business/menu")
 public class BusinessController {
 	
 	@Autowired
@@ -35,7 +35,7 @@ public class BusinessController {
         return "BupdateProfile"; // Thymeleaf 템플릿 파일의 이름
     }
 	
-	@PostMapping("/profile") //유저 프로필 보기
+	@PostMapping("/profile") // 사업자 프로필 업데이트
 	public String BupdateProfile(@ModelAttribute Business updatedbusiness, HttpSession session, Model model) { 
 		String bId = (String) session.getAttribute("bId");
 		
