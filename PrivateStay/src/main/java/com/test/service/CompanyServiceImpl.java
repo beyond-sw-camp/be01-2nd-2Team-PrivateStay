@@ -1,5 +1,7 @@
 package com.test.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,11 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public void deleteCompanyByCode(int Ccode) {
 		companyRepository.deleteById(Ccode);
+	}
+
+	@Override
+	public List<Company> findAllCompaniesByBusinessCode(String bId) {
+		return companyRepository.findByBusiness_BusinessCode(bId);
 	}
 
 }
