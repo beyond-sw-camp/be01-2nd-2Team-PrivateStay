@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사업장 추가 화면</title>
+</head>
+<body>
+	<form th:action="@{/company/save}" th:object="${company}" method="post">
+            <!-- <div class="mb-3">
+                <label for="business_code" class="form-label">사업장 코드</label>
+                <input type="text" id="business_code" name="business_code" th:field="*{business_code}" class="form-control">
+            </div> -->
+            <!-- <div class="mb-3">
+                <label for="business_pwd" class="form-label">비밀 번호</label>
+                <input type="password" id="business_pwd" name="business_pwd" th:field="*{business_pwd}" class="form-control">
+            </div> -->
+            <div class="mb-3">
+                <label for="company_name" class="form-label">사업장 이름</label>
+                <input type="text" id="company_name" name="company_name" th:field="*{company_name}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="company_addr" class="form-label">사업장 주소</label>
+                <input type="text" id="company_addr" name="company_addr" th:field="*{company_addr}" class="form-control">
+            
+            <button type="submit" class="btn btn-primary">추가 하기</button>
+            
+            <button type="button" onclick="location.href='/company/menu';"> 메뉴로 돌아가기</button>
+
+			<div th:if="${message}" class="alert alert-success">
+    			<p th:text="${message}"></p>
+			</div> 
+            <div th:if="${error}" class="alert alert-danger">
+    			<p th:text="${error}"></p>
+			</div>   
+</body>
+</html>
