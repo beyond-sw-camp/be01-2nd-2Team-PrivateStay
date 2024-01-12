@@ -4,7 +4,7 @@
     <title>Business Profile</title>
 </head>
 <body>
-	<form th:action="@{/main/business/menu/profile}" method="post">
+	<form th:action="@{/business/menu/profile}" method="post">
 	    <h1>Business Profile</h1>
 	
 	    <div th:if="${business}">
@@ -29,7 +29,7 @@
 		</div>   
 	    
     </form>
-    <!-- <a th:href="@{BforPrivate.html}" class="btn btn-primary">메뉴로 이동</a> -->
+    
     <button onclick="goBack()">메   뉴</button>
 
 <script>
