@@ -52,9 +52,11 @@ public class ProductController implements ErrorController {
 	// public ResponseEntity<Product> save(Product product, Model model) {
 	public String save(Product product, Company company, Model model, HttpServletRequest request) {
 		String cCode = request.getParameter("companyCode");
-		Company c = companyService.getCompanyByCode(Integer.parseInt(cCode));
+		//Company c = companyService.getCompanyByCode(Integer.parseInt(cCode));
 //		System.out.println(cCode);
-		Product saveProduct = productService.saveProduct(product);
+		productService.saveProductWithCompany(product, Integer.parseInt(cCode));
+		
+		//Product saveProduct = productService.saveProduct(product);
 		// new ResponseEntity<>(saveProduct, HttpStatus.CREATED);
 		return "response/static/calender";
 	}
@@ -135,6 +137,38 @@ public class ProductController implements ErrorController {
 //		return "response/static/calender";
 //	}
 
+		@GetMapping("/selectForm2")
+		public String selectForm2() {
+
+			return "selectcCode2";
+		}
+		
+		@PostMapping("/select2")
+		public String search2(@RequestParam("companyCode") String companyCode, Model model, HttpSession session) {
+			List<Product> product = productService.searchByCompanyCode(companyCode);
+			System.out.println(product);
+			model.addAttribute("product", product);
+			session.setAttribute("product", product);
+			//session.setAttribute("productCode", product);
+			return "cCodeProduct2"; // This corresponds to the Thymeleaf template file (products.html)
+		}
+		
+		@GetMapping(value = "/calenderForm2/{productCode}")
+		public String calenderForm2(Model model, @PathVariable("productCode") String productCode, HttpSession session) {
+			
+			System.out.println(productCode);
+			if (productCode != null) {
+				model.addAttribute("productCode", productCode);
+				//session.getAttribute("productCode");
+				return "response/static/calender";
+			} else {
+				System.out.println("유효하지 않은 접근입니다.");
+				return "response/static/calender";
+			}
+		}
+		
+		
+		
 	@PostMapping
 	public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
 		Product saveProduct = productService.saveProduct(product);
