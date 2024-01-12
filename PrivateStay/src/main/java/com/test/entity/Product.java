@@ -27,7 +27,7 @@ public class Product {
     private int productCode;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_code", referencedColumnName = "company_code")
+    @JoinColumn(name = "company_code")
     //@JoinColumn(name = "company_code")
     private Company company;
     
