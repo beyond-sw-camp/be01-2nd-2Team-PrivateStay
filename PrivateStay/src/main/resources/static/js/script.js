@@ -50,29 +50,17 @@ prevNextIcon.forEach(icon => {
   });
 });
 
-function ajax(){
-
-        	  
-        	}
-
 function openSamplePage(year, month, day) {
   // Save selected date to local storage
+  const p = document.getElementById('productCode').value;
   localStorage.setItem('selectedYear', year);
   localStorage.setItem('selectedMonth', month);
   localStorage.setItem('selectedDay', day);
-  
-  $.ajax({
-        	    url: "/sample",
-        	    data: "selectedYear=" + selectedYear,
-        	    type: "POST",
-        	    success : function(data){
-        	      alert("성공")
-        	    },
-        	    error : function(){
-        	      alert("에러")		
-        	    }
-        	  });
- 
-  // Dynamically redirect the current window to the sample page with selected year, month, and day
-  window.location.href = `http://localhost:8080/sample`;
+  localStorage.setItem('productCode', p);
+
+  // Construct the URL with query parameters
+  const url = `/product/sample?selectedYear=${year}&selectedMonth=${month}&selectedDay=${day}&productCode=${p}`;
+
+  // Redirect to the sample page with selected year, month, and day
+  window.location.href = url;
 }
