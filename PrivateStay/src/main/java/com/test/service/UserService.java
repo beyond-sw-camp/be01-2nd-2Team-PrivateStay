@@ -9,4 +9,5 @@ public interface UserService {
 	User getUserById(String userId); // 유저 정보보기
 	User updateUser(String userId, User user); //유저 정보 업데이트
 	boolean loginUser(String userId, String userPwd); //유저 로그인
+	void deleteUserById(String userId); //유저 삭제
 }

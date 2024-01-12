@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService{
 	            .map(user -> user.getUser_pwd().equals(userPwd))
 	            .orElse(false);
 	}
+	
+	@Override
+	public void deleteUserById(String userId) {
+		userRepository.deleteById(userId);
+	}
 }

@@ -4,10 +4,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,5 +76,11 @@ public class UserLoginrController {
 	public String logoutUser(HttpSession session) {
 		session.invalidate(); // 세션 무효화
 		return "redirect:/main/user/login"; //로그인 페이지로 이동
+	}
+	
+	@DeleteMapping("/delete/{userid}") //http://www.localhost.com:8080/user/delete/
+	public ResponseEntity deleteUser(@PathVariable String userid) {
+		userService.deleteUserById(userid);
+		return new ResponseEntity<>("유저 삭제가 성공적으로 완료되었습니다.", HttpStatus.OK);
 	}
 }
