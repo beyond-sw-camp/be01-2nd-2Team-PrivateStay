@@ -10,5 +10,6 @@ public interface ProductService {
 	Product saveProduct(Product product);
 	Product saveProductBycCode(Product product);
 	public List<Product> searchByCompanyCode(String cCode);
+	public void saveProductWithCompany(Product product, int companyCode);
 }
  
