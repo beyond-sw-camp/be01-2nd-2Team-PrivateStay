@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <div>
+            <form th:object="${reservationSearch}" class="form-inline">
+
+                <div class="form-group mx-sm-1 mb-2" style="margin-bottom: 20px;">
+                    <select th:field="*{status}" class="form-control">
+                        <option value="">주문상태</option>
+                        <option th:each="stat : ${T(jpa.privatestay.domain.entity.ReservationStatus).values()}"
+                                th:value="${stat}"
+                                th:text="${stat}">option
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-2">검색</button>
+            </form>
+        </div>
+
+
+        <table class="table table-striped" >
+            <thead>
+            <tr>
+                <th>예약번호</th>
+                <th>인원수</th>
+                <th>예약상태</th>
+                <th>생성날짜</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reservation: ${reservations}">
+                <td th:text="${reservation.id}"></td>
+                <td th:text="${reservation.headcount}"></td>
+                <td th:text="${reservation.status}"></td>
+                <td th:text="${reservation.currTimeStamp}"></td>
+                <td>
+                    <a th:if="${reservation.status != T(jpa.privatestay.domain.entity.ReservationStatus).CANCELED}" href="#"
+                       th:href="'javascript:edit('+${reservation.id}+')'"
+                       class="btn btn-warning">UPDATE</a>
+
+                </td>
+                <td>
+                    <a th:if="${reservation.status != T(jpa.privatestay.domain.entity.ReservationStatus).CANCELED}" href="#"
+                       th:href="'javascript:cancel('+${reservation.id}+')'"
+                       class="btn btn-danger">CANCEL</a>
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+<script>
+    function edit(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "get");
+        form.setAttribute("action", "/reservation/edit/"+id);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function cancel(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/reservation/cancel/"+id);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+</html>
