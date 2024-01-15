@@ -18,24 +18,6 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @GetMapping("/user")
-    public String createUserForm(Model model) {
-        model.addAttribute(new UserForm());
-        return "/user/userPage";
-    }
-
-    @PostMapping("/user")
-    public String createUser(@Valid UserForm userForm, BindingResult bindingResult, HttpSession session) {
-        if (bindingResult.hasErrors()) {
-            return "/user/userPage";
-        }
-        session.setAttribute("userId", userForm.getUserId());
-        session.setAttribute("sCode", userForm.getSCode());
-        return "redirect:/reservation/new";
-
-    }
-
-
     @GetMapping("/reservation/new")
     public String createForm(Model model, HttpSession session) {
         model.addAttribute(session.getAttribute("userId"));

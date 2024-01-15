@@ -8,7 +8,7 @@
 	<form  th:action="@{/product/save}" method="post">
         <div>
             <label for="companyCode">company code:</label>
-            <input type="text" id="companyCode" name="companyCode">
+            <input type="text" th:value="${companyCode}" id="companyCode" name="companyCode">
         </div>
         <div>
             <label for="productName">상품명:</label>

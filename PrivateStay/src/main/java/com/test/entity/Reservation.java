@@ -1,22 +1,34 @@
 package com.test.entity;
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+import com.test.exception.NotEnoughStockException;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
-import com.test.exception.NotEnoughStockException;
 @Entity
 @Table(name = "Reservation")
 @Getter
 @Setter
 public class Reservation {
-    //******************************
+	 //******************************
     @Id
     @GeneratedValue
     @Column(name = "reservationId")
     private Integer id;
     //********************************************
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
     //**********************************
     @Enumerated(EnumType.STRING)
@@ -24,7 +36,7 @@ public class Reservation {
     //***************************************
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "sCode", referencedColumnName = "sCode")
+    @JoinColumn(name = "stock_code", referencedColumnName = "stock_code")
     private Stock stock;
 
     //**********************************************
@@ -38,12 +50,12 @@ public class Reservation {
 
 
     public static Reservation createReservation(User user, Integer headcount, ReservationStatus status, Stock stock) throws NotEnoughStockException {
-        boolean stockAvailability = stock.getQuantity();
+        boolean stockAvailability = stock.isStockQuantity();
         if (!stockAvailability) throw new NotEnoughStockException("no stock available");
         Reservation reservation = new Reservation();
         reservation.setUser(user);
         reservation.setStock(stock);
-        stock.setQuantity(false);
+        stock.setStockQuantity(false);
         reservation.setHeadcount(headcount);
         reservation.setCurrTimeStamp(LocalDateTime.now());
         if (status.equals(ReservationStatus.ON_HOLD)) {
@@ -58,8 +70,7 @@ public class Reservation {
 
     public void cancelReservation() {
         this.setStatus(ReservationStatus.CANCELED);
-        this.stock.setQuantity(true);
+        this.stock.setStockQuantity(true);
     }
-
 
 }

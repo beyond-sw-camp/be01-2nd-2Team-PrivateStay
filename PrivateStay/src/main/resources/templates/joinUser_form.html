@@ -8,32 +8,32 @@
 	<form th:action="@{/user/join}" th:object="${user}" method="post">
             <div class="mb-3">
                 <label for="user_id" class="form-label">사용자ID</label>
-                <input type="text" id="user_id" name="user_id" th:field="*{user_id}" class="form-control">
+                <input type="text" id="user_id" name="user_id" th:field="*{userId}" class="form-control">
             </div>
             
             <div class="mb-3">
 	            <label for="user_pwd" class="form-label">비밀번호</label>
-	            <input type="password" id="user_pwd" name="user_pwd" th:field="*{user_pwd}" class="form-control" minlength="" required>
+	            <input type="password" id="user_pwd" name="user_pwd" th:field="*{userPwd}" class="form-control" minlength="" required>
         	</div>
             
             <div class="mb-3">
 	            <label for="user_name" class="form-label">이름</label>
-	            <input type="text" id="user_name" name="user_name" th:field="*{user_name}" class="form-control" minlength="1" required>
+	            <input type="text" id="user_name" name="user_name" th:field="*{userName}" class="form-control" minlength="1" required>
         	</div>
             <div class="mb-3">
                 <label for="user_gender" class="form-label">성별</label>
-            <select id="user_gender" name="user_gender" th:field="*{user_gender}" class="form-control">
+            <select id="user_gender" name="user_gender" th:field="*{userGender}" class="form-control">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
             </div>
             <div class="mb-3">
 	            <label for="user_age" class="form-label">나이</label>
-	            <input type="number" id="user_age" name="user_age" th:field="*{user_age}" class="form-control" min="1" required>
+	            <input type="number" id="user_age" name="user_age" th:field="*{userAge}" class="form-control" min="1" required>
         	</div>
             <div class="mb-3">
 	            <label for="user_reg_date" class="form-label"></label>
-	            <input type="hidden" id="user_reg_date" name="user_reg_date" th:field="*{user_reg_date}" class="form-control" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+	            <input type="hidden" id="user_reg_date" name="user_reg_date" th:field="*{userRegDate}" class="form-control" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
         	</div>
         	
             <button type="submit" class="btn btn-primary">회원가입</button>

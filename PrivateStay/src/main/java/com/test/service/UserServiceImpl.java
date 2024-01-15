@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User joinUser(User user) {
-		if(userRepository.findById(user.getUser_id()).isPresent()) {
+		if(userRepository.findById(user.getUserId()).isPresent()) {
 			throw new RuntimeException("이미 존재하는 ID입니다.");
 		}
 		return userRepository.save(user);
@@ -33,15 +33,15 @@ public class UserServiceImpl implements UserService{
 	public User updateUser(String userId, User user) {
 		Optional<User> loginUser = userRepository.findById(userId);
 		User updatedUser = loginUser.get();
-		updatedUser.setUser_pwd(user.getUser_pwd());
-		updatedUser.setUser_age(user.getUser_age());
+		updatedUser.setUserPwd(user.getUserPwd());
+		updatedUser.setUserAge(user.getUserAge());
 		return userRepository.save(updatedUser);
 	}
 
 	@Override
 	public boolean loginUser(String userId, String userPwd) {
 		return userRepository.findById(userId)
-	            .map(user -> user.getUser_pwd().equals(userPwd))
+	            .map(user -> user.getUserPwd().equals(userPwd))
 	            .orElse(false);
 	}
 	

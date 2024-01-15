@@ -24,7 +24,9 @@
             </thead>
             <tbody>
                 <tr th:each="company : ${companies}">
-                    <td th:text="${company.company_code}">사업장 코드</td>
+                    <td>
+                    	<a th:href="@{|/company/menu/${company.companyCode}|}" th:text="${company.companyCode}" id="companyCode"></a>사업장 코드
+                    	</td>
                     <td th:text="${company.company_name}">사업장 이름</td>
                     <td th:text="${company.company_addr}">사업장 주소</td>
                     <!-- 필요한 다른 데이터를 추가할 수 있습니다 -->

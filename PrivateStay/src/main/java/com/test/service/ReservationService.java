@@ -51,7 +51,7 @@ public class ReservationService {
         findedReservation.setCurrTimeStamp(LocalDateTime.now());
     }
     public List<Reservation> findReservationsByUserIdandStatus(ReservationSearch reservationSearch) {
-        return reservationRepository.findByUserIdAndStatus(reservationSearch.getUserId(), reservationSearch.getStatus());
+        return reservationRepository.findByUser_UserIdAndStatus(reservationSearch.getUserId(), reservationSearch.getStatus());
     }
     public Reservation findReservationById(Integer reservationId) {
         Reservation reservation = reservationRepository.findById(reservationId).get();

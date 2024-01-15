@@ -40,13 +40,13 @@ public class UserController {
 	public String updateUserProfile(@ModelAttribute User updatedUser, HttpSession session, Model model) { 
 		String userId = (String) session.getAttribute("userId");
 		
-		if (updatedUser.getUser_pwd() == null || updatedUser.getUser_pwd().isEmpty()) {
+		if (updatedUser.getUserPwd() == null || updatedUser.getUserPwd().isEmpty()) {
 			model.addAttribute("error", "비밀번호는 공백이 될 수 없습니다.");
 			return "updateUserProfile";
 	    }
 		
 		try {
-            updatedUser.setUser_id(userId); // 세션에서 받은 userId를 설정
+            updatedUser.setUserId(userId); // 세션에서 받은 userId를 설정
             User user = userService.updateUser(userId, updatedUser);
             model.addAttribute("user", user);
             model.addAttribute("message", "프로필이 성공적으로 업데이트되었습니다.");

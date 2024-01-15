@@ -42,7 +42,7 @@ public class UserLoginrController {
 		String formattedDate = currentDate.format(formatter);
 
 		try {
-			user.setUser_reg_date(formattedDate);
+			user.setUserRegDate(formattedDate);
 			userService.joinUser(user);
 			model.addAttribute("message", "가입이 완료되었습니다.");
 			return "loginUser_form"; // 가입 성공시 로그인 페이지로 이동
@@ -75,7 +75,7 @@ public class UserLoginrController {
 	@GetMapping("/logout")
 	public String logoutUser(HttpSession session) {
 		session.invalidate(); // 세션 무효화
-		return "redirect:/main/user/login"; //로그인 페이지로 이동
+		return "redirect:/"; //로그인 페이지로 이동
 	}
 	
 	@DeleteMapping("/delete/{userid}") //http://www.localhost.com:8080/user/delete/
