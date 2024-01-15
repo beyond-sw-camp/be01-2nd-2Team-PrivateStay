@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WelcomePage</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+        <style>
+        /* Add any custom CSS here if needed */
+        .button-div {
+            margin: 10px; /* Add margin here to space the buttons */
+        }
+    </style>
+    
 </head>
 <body>
 	
-    <div><a th:href="@{/signup}">회원가입</a></div>
-    <div><a th:href="@{/signin}">로그인</a></div>
+	<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+	    <div class="button-div"><a th:href="@{/signup}" class="btn btn-primary">회원가입</a></div>
+	    <div class="button-div"><a th:href="@{/signin}" class="btn btn-success">로그인</a></div>
+	</div>
 </body>
 </html>
