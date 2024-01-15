@@ -51,4 +51,8 @@ public class CompanyServiceImpl implements CompanyService{
 		return companyRepository.findByBusiness_BusinessCode(bId);
 	}
 
+	@Override
+	public List<Company> findAllCompanies() {
+		return companyRepository.findAll();
+	}
 }

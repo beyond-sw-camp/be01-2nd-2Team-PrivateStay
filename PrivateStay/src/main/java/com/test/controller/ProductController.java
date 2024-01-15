@@ -104,7 +104,7 @@ public class ProductController implements ErrorController {
 		        @RequestParam(name = "selectedYear") int selectedYear,
 		        @RequestParam(name = "selectedMonth") int selectedMonth,
 		        @RequestParam(name = "selectedDay") int selectedDay,
-		        @RequestParam(name = "productCode") int p) {
+		        @RequestParam(name = "productCode") int p, HttpSession session) {
 
 		    // 가져온 값 사용 예시
 		    System.out.println("Selected Year: " + selectedYear);
@@ -124,11 +124,13 @@ public class ProductController implements ErrorController {
 		    }
 		    
 		    String stockCode = year + month + day + p;
+		    
+		    session.setAttribute("sCode", stockCode);
 
 		    // 여기에서 필요에 따라 추가적인 처리 수행
 		    // 예를 들어, 데이터 처리, 뷰 반환 등
 
-		    return "sample"; // 적절한 뷰 이름으로 반환
+		    return "sample"; // 적절한 뷰 이름으로 반환	   
 		}
 	
 //	@GetMapping("/calenderForm")
@@ -168,22 +170,7 @@ public class ProductController implements ErrorController {
 			}
 		}
 		
-		@DeleteMapping("/delete/{id}") //http://www.localhost.com:8080/product/delete
-		public ResponseEntity deleteUser(@PathVariable int id) {
-			productService.deleteProductById(id);
-			return new ResponseEntity<>("상품 삭제가 성공적으로 완료되었습니다.", HttpStatus.OK);
-		}
 
-		@PutMapping("/update/{id}")
-		public ResponseEntity update(@PathVariable int id, @RequestBody Product product) {
-		    Product updatedProduct = productService.updateProductById(id, product);
-		    
-		    if (updatedProduct != null) {
-		        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
-		    } else {
-		        return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
-		    }
-		}
 		
 		@GetMapping("/selectAll/{companyCode}")
 		public String searchAllProduct(@PathVariable("companyCode") String companyCode, Model model, HttpSession session) {
@@ -194,8 +181,16 @@ public class ProductController implements ErrorController {
 			//session.setAttribute("productCode", product);
 			return "cCodeProduct2"; // This corresponds to the Thymeleaf template file (products.html)
 		}
-		
-		
+	
+		@GetMapping("/selectAll0/{companyCode}")
+		public String selectAllProduct(@PathVariable("companyCode") String companyCode, Model model, HttpSession session) {
+			List<Product> product = productService.searchByCompanyCode(companyCode);
+			System.out.println(product);
+			model.addAttribute("product", product);
+			session.setAttribute("product", product);
+			//session.setAttribute("productCode", product);
+			return "cCodeProduct"; // This corresponds to the Thymeleaf template file (products.html)
+		}
 		
 	@PostMapping
 	public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
@@ -207,6 +202,28 @@ public class ProductController implements ErrorController {
 	public ResponseEntity<Product> getProductById(@PathVariable("id") int productCode) {
 		Product product = productService.getProductById(productCode);
 		return ResponseEntity.ok(product);
+	}
+	
+	
+	
+	
+	// ---------------------------------------------------------------------------------
+	
+	@DeleteMapping("/delete/{id}") //http://www.localhost.com:8080/product/delete
+	public ResponseEntity deleteUser(@PathVariable int id) {
+		productService.deleteProductById(id);
+		return new ResponseEntity<>("상품 삭제가 성공적으로 완료되었습니다.", HttpStatus.OK);
+	}
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity update(@PathVariable int id, @RequestBody Product product) {
+	    Product updatedProduct = productService.updateProductById(id, product);
+	    
+	    if (updatedProduct != null) {
+	        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+	    }
 	}
 
 }
