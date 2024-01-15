@@ -1,5 +1,6 @@
 package com.test.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,42 @@ public class UserServiceImpl implements UserService{
 	            .map(user -> user.getUserPwd().equals(userPwd))
 	            .orElse(false);
 	}
+	
+	
+	// 하단은 관리자용 메뉴
+	
+	@Override
+	public User saveUser(User user) {
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User getUserByIdM(String userId) {
+		Optional<User> user = userRepository.findById(userId);
+        if(user.isPresent()) {
+            return user.get();
+        } else {
+            // 예외 처리
+            throw new RuntimeException("User not found for id :: " + userId);
+        }
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public User updateUserM(String userId, User user) {
+		User updateuser = getUserById(userId);
+		updateuser.setUserPwd(user.getUserPwd());
+		updateuser.setUserName(user.getUserName());
+		updateuser.setUserGender(user.getUserGender());
+		updateuser.setUserAge(user.getUserAge());
+		updateuser.setUserRegDate(user.getUserRegDate());
+        return userRepository.save(updateuser);
+	}
+	
 	
 	@Override
 	public void deleteUserById(String userId) {
