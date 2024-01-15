@@ -12,7 +12,7 @@
         </div>
         <div>
             <label for="stockQuantity">예약 가능 여부 (가능 = 1, 불가능 = 0):</label>
-            <input type="text" id="stockQuantity" name="stockQuantity">
+            <input type="text" id="stockQuantity" name="stockQuantity" th:value="${stock.stockQuantity ? 1 : 0}">
         </div>
         
         <div>

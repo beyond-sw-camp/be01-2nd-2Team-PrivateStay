@@ -13,6 +13,7 @@ import com.test.service.ProductService;
 import com.test.service.StockService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -55,14 +56,19 @@ public class StockController {
 	    
 	    stockService.saveStockWithProduct
 	    (stock, p, selectedYear, selectedMonth, selectedDay, stockCode);
+	    
 	    model.addAttribute("stockCode", stockCode);
+	    model.addAttribute("stock", stock);
 
 	    return "stockInput"; // 적절한 뷰 이름으로 반환
 	}
 	
 	@PostMapping("/insert")
-	public String insertStock(@RequestParam("stockQuantity") boolean stockQuantity, Stock stock, Model model, HttpServletRequest request) {
+	public String insertStock(@RequestParam("stockQuantity") boolean stockQuantity, 
+			Stock stock, Model model, HttpServletRequest request, HttpSession session) {
 		String stockCode = request.getParameter("stockCode");
+		
+		String companyCode = (String) session.getAttribute("companyCode");
 		
 //		boolean a = false;
 //		
@@ -70,7 +76,7 @@ public class StockController {
 //		
 		stockService.updateStockQuantityByStockCode(stockCode, stockQuantity);
 		
-		return "index";
+		return "redirect:/product/selectAll/" + companyCode;
 	}
 	
 }
