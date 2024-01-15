@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 사업장 관리 메뉴입니다.</title>
+</head>
+<body>
+=========[ M E N U ]==========
+    <div><a th:href="@{|/product/form/${companyCode}|}">[ 1 ] 상품 추가</a></div>
+    <div><a th:href="@{|/product/selectAll/${companyCode}|}">[ 2 ] 현재 상품 확인</a></div>
+
+    
+</body>
+</html>

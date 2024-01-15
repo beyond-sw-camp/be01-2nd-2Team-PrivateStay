@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>sample</title>
+</head>
+<body>
+    <div id="selectedDateInfo"></div>
+
+    <script>
+        // Retrieve values from localStorage
+        var selectedYear = localStorage.getItem('selectedYear');
+        var selectedMonth = localStorage.getItem('selectedMonth');
+        var selectedDay = localStorage.getItem('selectedDay');
+        
+        console.log(selectedYear);
+
+        // Display the retrieved values on the page
+        var selectedDateInfo = document.getElementById('selectedDateInfo');
+        selectedDateInfo.innerHTML = `<p>Selected Date: ${selectedYear}-${selectedMonth}-${selectedDay}</p>`;
+        
+        document.getElementById("date").innerHTML = selectedDateInfo;
+        
+        
+        </script>
+        <h1 id="date"></h1>
+    
+    
+</body>
+</html> 
