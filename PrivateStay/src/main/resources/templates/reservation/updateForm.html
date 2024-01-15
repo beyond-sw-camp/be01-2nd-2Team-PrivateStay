@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form th:object="${form}" method="post" style="margin-bottom: 20px;">
+        <div class="form-group">
+            <label th:for="headCount">인원수를 입력하세요</label>
+            <input type="text" th:field="*{headCount}" class="form-control"
+                   placeholder="인원수를 입력하세요" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <select th:field="*{status}" class="form-control">
+                <option th:each="stat : ${T(jpa.privatestay.domain.entity.ReservationStatus).values()}"
+                        th:unless="${stat == T(jpa.privatestay.domain.entity.ReservationStatus).CANCELED}"
+                        th:value="${stat}"
+                        th:text="${stat}">option
+                </option>
+            </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
