@@ -10,6 +10,6 @@ import com.test.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>{ //Type, Key
 
-	  List<Product> findByCompanyCompanyCode(int companyCode);
+	List<Product> findByCompanyCompanyCode(int companyCode);
 }
  

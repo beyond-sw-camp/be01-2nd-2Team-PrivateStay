@@ -154,9 +154,23 @@ public class CompanyController {
 	        return "Cupdate";
 	    }
 	}
-
-
 	
+	@GetMapping(value = "/menu/{companyCode}")
+	public String calenderForm(Model model, @PathVariable("companyCode") String companyCode, HttpSession session) {
+		
+		System.out.println(companyCode);
+		if (companyCode != null) {
+			model.addAttribute("companyCode", companyCode);
+			session.setAttribute("companyCode", companyCode);
+			//session.getAttribute("productCode");
+			return "companyMenu";
+		} else {
+			System.out.println("유효하지 않은 접근입니다.");
+			return "companyMenu";
+		}
+	}
+
+
 }
 
 //@PostMapping 			//http://localhost:8081/api/company

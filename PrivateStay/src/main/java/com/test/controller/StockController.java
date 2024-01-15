@@ -76,10 +76,7 @@ public class StockController {
 		
 		return "index";
 	}
-	
-	
-	
-	
 
+	
 	
 }

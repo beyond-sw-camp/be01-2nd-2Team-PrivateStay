@@ -57,7 +57,6 @@ public class BusinessLoginController {
 			model.addAttribute("error", "로그인을 실패했습니다.");
 			return "Blogin_form"; // 로그인 실패 시 로그인 폼을 다시 표시
 		}
-
 	}
 	
 	@GetMapping("/logout")
@@ -77,7 +76,6 @@ public class BusinessLoginController {
 	    	System.out.println("유효하지 않은 접근입니다.");
 	    	return "redirect:/main/business/login"; //로그인 페이지로 이동
 	    }
-		
         return "BforPrivate";
 	}
 }

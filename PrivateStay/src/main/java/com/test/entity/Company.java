@@ -39,10 +39,9 @@ public class Company {
     public String toString() {
         return "Company{" +
                "companyCode=" + companyCode +
-               ", business=" + (business != null ? business.getBusiness_code() : null) + // 연관 엔터티의 정보만 출력
+               ", business=" + (business != null ? business.getBusinessCode() : null) + // 연관 엔터티의 정보만 출력
                ", company_name='" + company_name + '\'' +
                ", company_addr='" + company_addr + '\'' +
                '}';
     }
-    
 }

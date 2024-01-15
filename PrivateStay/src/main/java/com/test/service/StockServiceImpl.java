@@ -95,6 +95,4 @@ public class StockServiceImpl implements StockService {
 		return null;
 	}
 
-	
-
 }

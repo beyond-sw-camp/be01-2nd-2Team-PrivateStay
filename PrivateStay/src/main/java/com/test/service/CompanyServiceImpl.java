@@ -19,7 +19,7 @@ public class CompanyServiceImpl implements CompanyService{
 	
 	@Override
 	public Company saveCompany(Company company) {
-		if(companyRepository.findById(company.getCompany_code()).isPresent()) {
+		if(companyRepository.findById(company.getCompanyCode()).isPresent()) {
 			throw new RuntimeException("이미 존재하는 사업장입니다.");
 		}
 		return companyRepository.save(company);

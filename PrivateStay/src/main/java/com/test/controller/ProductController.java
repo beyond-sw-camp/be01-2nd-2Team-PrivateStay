@@ -1,7 +1,5 @@
 package com.test.controller;
 
-import java.net.http.HttpRequest;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,9 +42,10 @@ public class ProductController implements ErrorController {
 //        modelAndView.setViewName("productInput");
 //        return modelAndView;
 //    }
-	@GetMapping("/form")
-	public String saveForm() {
-
+	@GetMapping("/form/{companyCode}")
+	public String saveForm(Model model, @PathVariable("companyCode") String companyCode, HttpSession session) {
+		session.getAttribute(companyCode);
+		model.addAttribute("companyCode", companyCode);
 		return "productInput";
 	}
 
@@ -143,7 +144,7 @@ public class ProductController implements ErrorController {
 			return "selectcCode2";
 		}
 		
-		@PostMapping("/select2")
+		@PostMapping("/select2/{companyCode}")
 		public String search2(@RequestParam("companyCode") String companyCode, Model model, HttpSession session) {
 			List<Product> product = productService.searchByCompanyCode(companyCode);
 			System.out.println(product);
@@ -165,6 +166,33 @@ public class ProductController implements ErrorController {
 				System.out.println("유효하지 않은 접근입니다.");
 				return "response/static/calender2";
 			}
+		}
+		
+		@DeleteMapping("/delete/{id}") //http://www.localhost.com:8080/product/delete
+		public ResponseEntity deleteUser(@PathVariable int id) {
+			productService.deleteProductById(id);
+			return new ResponseEntity<>("상품 삭제가 성공적으로 완료되었습니다.", HttpStatus.OK);
+		}
+
+		@PutMapping("/update/{id}")
+		public ResponseEntity update(@PathVariable int id, @RequestBody Product product) {
+		    Product updatedProduct = productService.updateProductById(id, product);
+		    
+		    if (updatedProduct != null) {
+		        return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+		    } else {
+		        return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+		    }
+		}
+		
+		@GetMapping("/selectAll/{companyCode}")
+		public String searchAllProduct(@PathVariable("companyCode") String companyCode, Model model, HttpSession session) {
+			List<Product> product = productService.searchByCompanyCode(companyCode);
+			System.out.println(product);
+			model.addAttribute("product", product);
+			session.setAttribute("product", product);
+			//session.setAttribute("productCode", product);
+			return "cCodeProduct2"; // This corresponds to the Thymeleaf template file (products.html)
 		}
 		
 		

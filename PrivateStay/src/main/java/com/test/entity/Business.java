@@ -22,7 +22,7 @@ public class Business {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "business_code", nullable = false)
-	private String business_code;
+	private String businessCode;
 	
 	@Column(name = "business_pwd", nullable = false)
 	private String business_pwd;
@@ -38,7 +38,7 @@ public class Business {
 	@Override
 	public String toString() {
 	    return "Business{" +
-	           "business_code='" + business_code + '\'' +
+	           "business_code='" + businessCode + '\'' +
 	           ", business_pwd='" + business_pwd + '\'' +
 	           ", business_name='" + business_name + '\'' +
 	           ", business_reg_date=" + business_reg_date +

@@ -45,7 +45,7 @@ public class BusinessController {
 	    }
 		
 		try {
-            updatedbusiness.setBusiness_code(bId); // 세션에서 받은 userId를 설정
+            updatedbusiness.setBusinessCode(bId); // 세션에서 받은 userId를 설정
             Business business = businessService.updateBusiness(bId, updatedbusiness);
             model.addAttribute("business", business);
             model.addAttribute("message", "프로필이 성공적으로 업데이트되었습니다.");
@@ -54,7 +54,7 @@ public class BusinessController {
         }
 
 		return "BupdateProfile";
-	}	
+	}
 	
 	/*
 	 * @PostMapping("/profile") // 사업자 프로필 수정 public String
