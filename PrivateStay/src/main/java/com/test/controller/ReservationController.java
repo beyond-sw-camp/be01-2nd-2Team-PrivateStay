@@ -18,6 +18,13 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
+	   @GetMapping("/reservation/{pCode}")
+    public String reservationListBySCode(@PathVariable("pCode") String pCode, Model model) {
+        List<Reservation> reservations = reservationService.findReservationBySCode(pCode);
+        model.addAttribute("reservations", reservations);
+        return "reservation/reservationList";
+    }
+
     @GetMapping("/reservation/new")
     public String createForm(@RequestParam(name = "selectedYear") int selectedYear,
 	        @RequestParam(name = "selectedMonth") int selectedMonth,
