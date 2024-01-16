@@ -1,5 +1,7 @@
 package com.test.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,38 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessRepository.findById(bId)
 	            .map(business -> business.getBusiness_pwd().equals(bpwd))
 	            .orElse(false);
+	}
+
+	// 포스트맨
+	
+	
+	@Override
+	public Business saveB(Business business) {
+		return businessRepository.save(business);
+	}
+
+	@Override
+	public Business getBByCode(String bcode) {
+		return businessRepository.findById(bcode).get();
+	}
+
+	@Override
+	public List<Business> getAllB() {
+		return businessRepository.findAll();
+	}
+
+	@Override
+	public Business updateB(String bcode, Business business) {
+		Business updatebCode = getBByCode(bcode);
+		updatebCode.setBusiness_name(business.getBusiness_name());
+		updatebCode.setBusiness_pwd(business.getBusiness_pwd());
+		updatebCode.setBusiness_reg_date(business.getBusiness_reg_date());		
+		return businessRepository.save(updatebCode);
+	}
+
+	@Override
+	public void deleteBByCode(String bcode) {
+		businessRepository.deleteById(bcode);
 	}
 
 }
