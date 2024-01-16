@@ -59,7 +59,7 @@ function openSamplePage(year, month, day) {
   localStorage.setItem('productCode', p);
 
   // Construct the URL with query parameters
-  const url = `/product/sample?selectedYear=${year}&selectedMonth=${month}&selectedDay=${day}&productCode=${p}`;
+  const url = `/reservation/new?selectedYear=${year}&selectedMonth=${month}&selectedDay=${day}&productCode=${p}`;
 
   // Redirect to the sample page with selected year, month, and day
   window.location.href = url;
