@@ -56,13 +56,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUserByIdM(String userId) {
-		Optional<User> user = userRepository.findById(userId);
-        if(user.isPresent()) {
-            return user.get();
-        } else {
-            // 예외 처리
-            throw new RuntimeException("User not found for id :: " + userId);
-        }
+		return userRepository.findById(userId).get();
 	}
 
 	@Override

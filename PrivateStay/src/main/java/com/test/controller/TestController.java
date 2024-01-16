@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.entity.User;
 import com.test.service.UserService;
@@ -35,19 +36,21 @@ public class TestController {
 	//R
 	@GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") String userId) {
-        User user = userService.getUserById(userId);
+        User user = userService.getUserByIdM(userId);
         return ResponseEntity.ok().body(user);
     }
 	
-	//U
+	
 	@GetMapping("/userlist")
+	@ResponseBody
 	public List<User> getAllUsers() {
 	    return userService.getAllUsers();
 	}
 	
-	@PutMapping("/{id}")
+	//U
+	@PutMapping("/update/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable(value = "id") String userId, @RequestBody User userDetails) {
-	    User updatedUser = userService.updateUser(userId, userDetails);
+	    User updatedUser = userService.updateUserM(userId, userDetails);
 	    return ResponseEntity.ok(updatedUser);
 	}
 	
