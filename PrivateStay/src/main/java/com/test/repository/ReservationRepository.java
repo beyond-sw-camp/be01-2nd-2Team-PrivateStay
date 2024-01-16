@@ -10,7 +10,6 @@ import com.test.entity.ReservationStatus;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
     List<Reservation> findByUser_UserIdAndStatus(String userId, ReservationStatus status);
-        List<Reservation> findByStock_sCodeContaining(String pCode);
 
 
 }
