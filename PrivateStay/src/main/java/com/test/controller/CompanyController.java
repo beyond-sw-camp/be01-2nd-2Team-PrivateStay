@@ -171,10 +171,12 @@ public class CompanyController {
 	}
 	
 	@GetMapping("/companylist")
-	public String listAllCompanies(Model model) {
+	public String listAllCompanies1(Model model, HttpSession session) {
 	    try {
 	        List<Company> companies = companyService.findAllCompanies(); // 모든 사업장을 조회
 	        model.addAttribute("companies", companies); // 조회한 사업장 리스트를 모델에 추가
+	        String userId = (String) session.getAttribute("userId");
+	        System.out.println("companyList userId = " + userId);
 	    } catch (Exception e) {
 	        // 오류 처리
 	        model.addAttribute("error", "사업장 조회 중 오류가 발생했습니다.");

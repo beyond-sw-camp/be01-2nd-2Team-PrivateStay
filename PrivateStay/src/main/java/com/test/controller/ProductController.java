@@ -91,6 +91,8 @@ public class ProductController implements ErrorController {
 			System.out.println(productCode);
 			if (productCode != null) {
 				model.addAttribute("productCode", productCode);
+				String userId = (String) session.getAttribute("userId");
+		        System.out.println("calender userId = " + userId);
 				//session.getAttribute("productCode");
 				return "response/static/calender";
 			} else {
@@ -188,6 +190,8 @@ public class ProductController implements ErrorController {
 			System.out.println(product);
 			model.addAttribute("product", product);
 			session.setAttribute("product", product);
+			String userId = (String) session.getAttribute("userId");
+	        System.out.println("company code userId = " + userId);
 			//session.setAttribute("productCode", product);
 			return "cCodeProduct"; // This corresponds to the Thymeleaf template file (products.html)
 		}

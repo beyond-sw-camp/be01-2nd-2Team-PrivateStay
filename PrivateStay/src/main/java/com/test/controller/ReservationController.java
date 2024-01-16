@@ -19,10 +19,35 @@ public class ReservationController {
     private final ReservationService reservationService;
 
     @GetMapping("/reservation/new")
-    public String createForm(Model model, HttpSession session) {
-        model.addAttribute(session.getAttribute("userId"));
+    public String createForm(@RequestParam(name = "selectedYear") int selectedYear,
+	        @RequestParam(name = "selectedMonth") int selectedMonth,
+	        @RequestParam(name = "selectedDay") int selectedDay,
+	        @RequestParam(name = "productCode") int p,
+	        Model model, HttpSession session) {
+    	// 가져온 값 사용 예시
+	    System.out.println("Selected Year: " + selectedYear);
+	    System.out.println("Selected Month: " + selectedMonth);
+	    System.out.println("Selected Day: " + selectedDay);
+	    System.out.println("p: " + p);
+	    
+	    String year = Integer.toString(selectedYear);
+	    String month = Integer.toString(selectedMonth);
+	    String day = Integer.toString(selectedDay);
+	    
+	    if(month.length() == 1) {
+	    	month = "0" + month;
+	    }
+	    if(day.length() == 1) {
+	    	day = "0" + day;
+	    }
+	    
+	    String sCode = year + month + day + p;
+	    session.setAttribute("sCode", sCode);
+	    String userId = (String)session.getAttribute("userId");
+    	
+        model.addAttribute(userId);
         model.addAttribute(session.getAttribute("sCode"));
-        System.out.println("userId in createForm = " + session.getAttribute("userId"));
+        System.out.println("userId in createForm = " + userId);
         System.out.println("sCode in createForm = " + session.getAttribute("sCode"));
         model.addAttribute("reservationForm", new ReservationForm());
         return "reservation/reservationForm";
