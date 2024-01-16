@@ -8,10 +8,10 @@
         <div>
             <form th:object="${reservationSearch}" class="form-inline">
 
-                <div class="form-group mx-sm-1 mb-2" style="margin-bottom: 20px;">
+                <div class="form-group mx-sm-1 mb-2" style="margin-bottom: 30px;">
                     <select th:field="*{status}" class="form-control">
                         <option value="">주문상태</option>
-                        <option th:each="stat : ${T(com.test.entity.ReservationStatus).values()}"
+                        <option th:each="stat : ${T(jpa.privatestay.domain.entity.ReservationStatus).values()}"
                                 th:value="${stat}"
                                 th:text="${stat}">option
                         </option>
@@ -39,13 +39,15 @@
                 <td th:text="${reservation.status}"></td>
                 <td th:text="${reservation.currTimeStamp}"></td>
                 <td>
-                    <a th:if="${reservation.status != T(com.test.entity.ReservationStatus).CANCELED}" href="#"
+                    <a th:if="${reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).RESERVED.name()
+                    or reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).ON_HOLD.name()}" href="#"
                        th:href="'javascript:edit('+${reservation.id}+')'"
                        class="btn btn-warning">UPDATE</a>
 
                 </td>
                 <td>
-                    <a th:if="${reservation.status != T(com.test.entity.ReservationStatus).CANCELED}" href="#"
+                    <a th:if="${reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).RESERVED.name()
+                    or reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).ON_HOLD.name()}" href="#"
                        th:href="'javascript:cancel('+${reservation.id}+')'"
                        class="btn btn-danger">CANCEL</a>
 
