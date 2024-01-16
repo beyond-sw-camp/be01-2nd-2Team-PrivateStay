@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import com.test.entity.Company;
 import com.test.repository.CompanyRepository;
 
-// import lombok.extern.slf4j.Slf4j;
-
 @Service
-// @Slf4j
 public class CompanyServiceImpl implements CompanyService{
 
 	@Autowired
@@ -54,5 +51,30 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public List<Company> findAllCompanies() {
 		return companyRepository.findAll();
+	}
+
+	// 포스트맨
+	
+	@Override
+	public Company saveC(Company company) {
+		return companyRepository.save(company);
+	}
+
+	@Override
+	public Company getCByCode(int cID) {
+		return companyRepository.findById(cID).get();
+	}
+
+	@Override
+	public Company updateCByCode(int cID, Company company) {
+		Company updateC = getCByCode(cID);
+		updateC.setCompany_name(company.getCompany_name());
+		updateC.setCompany_addr(company.getCompany_addr());		
+		return companyRepository.save(updateC);
+	}
+
+	@Override
+	public void deleteCByCode(int cID) {
+		companyRepository.deleteById(cID);
 	}
 }
