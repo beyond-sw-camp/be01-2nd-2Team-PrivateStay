@@ -13,8 +13,8 @@
 
         <div class="form-group" style="margin-bottom: 20px;">
             <select th:field="*{status}" class="form-control">
-                <option th:each="stat : ${T(jpa.privatestay.domain.entity.ReservationStatus).values()}"
-                        th:unless="${stat == T(jpa.privatestay.domain.entity.ReservationStatus).CANCELED}"
+                <option th:each="stat : ${T(com.test.entity.ReservationStatus).values()}"
+                        th:unless="${stat == T(com.test.entity.ReservationStatus).CANCELED}"
                         th:value="${stat}"
                         th:text="${stat}">option
                 </option>
