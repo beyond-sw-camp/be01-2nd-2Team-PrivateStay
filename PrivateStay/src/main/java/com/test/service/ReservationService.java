@@ -53,9 +53,7 @@ public class ReservationService {
     public List<Reservation> findReservationsByUserIdandStatus(ReservationSearch reservationSearch) {
         return reservationRepository.findByUser_UserIdAndStatus(reservationSearch.getUserId(), reservationSearch.getStatus());
     }
-       public List<Reservation> findReservationBySCode(String pCode) {
-        return reservationRepository.findByStock_sCodeContaining(pCode);
-    }
+      
     public Reservation findReservationById(Integer reservationId) {
         Reservation reservation = reservationRepository.findById(reservationId).get();
         return reservation;
