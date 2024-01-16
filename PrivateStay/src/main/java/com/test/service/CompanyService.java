@@ -14,4 +14,9 @@ public interface CompanyService {
 	
 	List<Company> findAllCompanies(); //시스템의 전체 사업장 조회하기
 	
+	Company saveC(Company company);
+	Company getCByCode(int cID);
+	Company updateCByCode(int cID, Company company);
+	void deleteCByCode(int cID);
+	
 }
