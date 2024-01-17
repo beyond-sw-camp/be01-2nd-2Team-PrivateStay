@@ -32,7 +32,7 @@ public class StockController {
 	        @RequestParam(name = "selectedMonth") int selectedMonth,
 	        @RequestParam(name = "selectedDay") int selectedDay,
 	        @RequestParam(name = "productCode") int p,
-	        Stock stock, Product product, Model model, HttpServletRequest request) {
+	        Stock stock, Product product, Model model, HttpServletRequest request, HttpSession session) {
 		
 
 	    // 가져온 값 사용 예시
@@ -59,7 +59,9 @@ public class StockController {
 	    
 	    model.addAttribute("stockCode", stockCode);
 	    model.addAttribute("stock", stock);
-
+	    
+	    
+	    String companyCode = (String) session.getAttribute("companyCode");
 	    return "stockInput"; // 적절한 뷰 이름으로 반환
 	}
 	

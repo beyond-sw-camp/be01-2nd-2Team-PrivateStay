@@ -3,22 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>product Info Input</title>
+<script type="text/javascript">
+    function updateStockQuantity() {
+        var checkBox = document.getElementById("stockQuantity");
+        var hiddenField = document.getElementById("hiddenStockQuantity");
+        hiddenField.value = checkBox.checked ? "true" : "false";
+    }
+</script>
 </head>
 <body>
-	<form  th:action="@{/stock/insert}" method="post">
-	
-	<input type="text" th:text="${stockCode}" th:value="${stockCode}" id="stockCode" name="stockCode" required>
+    <form  th:action="@{/stock/insert}" method="post">
+    
+    <input type="text" th:text="${stockCode}" th:value="${stockCode}" id="stockCode" name="stockCode" required>
         <div>
-            <label for="stockQuantity">예약 가능 여부 (가능 = 1, 불가능 = 0):</label>
-            <input type="checkbox" id="stockQuantity" name="stockQuantity" th:checked="${stockQuantity}">
+            <label for="stockQuantity">예약 가능 여부 (체크: 가능 /체크 해제: 불가능):</label>
+            <input type="checkbox" id="stockQuantity" name="stockQuantity" th:checked="${stockQuantity}" onclick="updateStockQuantity()">
+            <input type="hidden" id="hiddenStockQuantity" name="stockQuantity" value="false">
         </div>
         
         <div>
-            <button type="submit">submit</button>
+            <button type="submit">저장</button>
         </div>
             <div th:if="${error}" class="alert alert-danger">
-    			<p th:text="${error}"></p>
-			</div>   
-   	</form>
+                <p th:text="${error}"></p>
+            </div>   
+    </form>
 </body>
 </html>
