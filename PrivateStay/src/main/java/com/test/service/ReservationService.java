@@ -9,5 +9,6 @@ public interface ReservationService {
 	public void saveProduct(Reservation reservation, String userId, String sCode, 
 			int year, int month, int day, int headCount, String status);
 	public List<Reservation> searchByUserId(String userId);
+	public List<Reservation> searchByProductCode(String productCode);
 }
  

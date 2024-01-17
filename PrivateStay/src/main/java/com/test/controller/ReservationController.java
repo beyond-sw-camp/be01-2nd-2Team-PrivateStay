@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.entity.Product;
 import com.test.entity.Reservation;
+import com.test.service.ProductService;
 import com.test.service.ReservationService;
 import com.test.service.StockService;
 
@@ -26,7 +27,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReservationController {
 	
-	
+	@Autowired
+	private ProductService productService;
 	@Autowired
 	private ReservationService reservationService;
 	
@@ -109,6 +111,24 @@ public class ReservationController {
 //		//session.setAttribute("productCode", product);
 //		return "cCodeProduct2"; // This corresponds to the Thymeleaf template file (products.html)
 		return "myReservationList";
+	}
+	
+	@GetMapping("/select/{companyCode}")
+	public String getCompanyListRequest(@PathVariable String companyCode, Model model, HttpSession session) {
+		//String cCode = Integer.toString(companyCode);
+		List<Product> product = productService.searchByCompanyCode(companyCode);
+		System.out.println(product);
+		model.addAttribute("product", product);
+		session.setAttribute("product", product);
+		//session.setAttribute("productCode", product);
+		return "cCodeProduct3"; // This corresponds to the Thymeleaf template file (products.html)
+	}
+	
+	@GetMapping("/proreservation/{productCode}")
+	public String getCompanyResListRequest(@PathVariable("productCode") String productCode, Model model, HttpSession session) {
+		List<Reservation> reservation = reservationService.searchByProductCode(productCode);
+		model.addAttribute("reservation", reservation);
+		return "myReservationList2"; // This corresponds to the Thymeleaf template file (products.html)
 	}
 	
 	

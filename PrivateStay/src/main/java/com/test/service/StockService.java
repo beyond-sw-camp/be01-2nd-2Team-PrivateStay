@@ -11,7 +11,7 @@ public interface StockService {
 	Product saveProduct(Product product);
 	Product saveProductBycCode(Product product);
 	public List<Product> searchByCompanyCode(String cCode);
-	
+	public boolean getStockQuantityByStockCode(String sCode);
 	
 	public void saveStockWithProduct(Stock stock, int productCode, 
 			int year, int month, int day, String stockCode);

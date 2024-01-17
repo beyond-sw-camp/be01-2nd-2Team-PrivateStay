@@ -88,6 +88,12 @@ public class StockServiceImpl implements StockService {
             // 예외처리 등을 수행할 수 있습니다.
         }
     }
+	
+	@Override
+	public boolean getStockQuantityByStockCode(String sCode) {
+		Stock stock = stockRepository.findByStockCode(sCode);
+		return stock.isStockQuantity();
+	}
 
 	@Override
 	public List<Product> searchByCompanyCode(String cCode) {
