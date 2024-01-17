@@ -7,13 +7,12 @@
 
 <form th:action="@{/reservation/complete/{selectedYear}/{selectedMonth}/{selectedDay}/{productCode}(selectedYear=${selectedYear}, selectedMonth=${selectedMonth}, selectedDay=${selectedDay}, productCode=${productCode})}" method="post">
     <!-- Include input fields for the headcount and status -->
-    <label for="headCount">Headcount:</label>
+    <label for="headCount">인원 수:</label>
     <input type="number" id="headCount" name="headCount" required>
     
     <label for="status">Status:</label>
-    <select id="status" name="status" required>
-        <option value="PENDING">Pending</option>
-        <option value="CONFIRMED">Confirmed</option>
+    <select id="status" name="status">
+        <option value="Book">예약</option>
         <!-- Add more status options if needed -->
     </select>
 
@@ -24,7 +23,7 @@
     <input type="hidden" name="productCode" value="${productCode}">
 
  
-    <button type="submit">Submit Reservation</button>
+    <button type="submit">예약하기</button>
 </form>
 
 </div> <!-- /container -->

@@ -6,17 +6,25 @@
     <title>company code selected</title>
 </head>
 <body>
-   <ul>
-        <li th:each="reservation : ${reservation}">
-        	<p th:text="${reservation.reservId}"></p>
-        	<!--  a th:href="@{|/product/calenderForm2/${product.productCode}|}" th:text="${product.productCode}" id="productCode" name="productCode" required></a>
-            <p th:text="${product.productPrice}"></p>
-            <p th:text="${product.productDis}"></p>
-        	
-            <!-- a th:href="@{/stock/calender}" -->
-        </li>
-    </ul>
-   
-    
+    <table>
+        <thead>
+            <tr>
+                <th>예약 ID</th>
+                <th>예약일자</th>
+                <th>인원 수</th>
+                <th>예약 시간</th>
+                <th>상태</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reservation : ${reservation}">
+                <td th:text="${reservation.reservId}"></td>
+                <td th:text="${reservation.year} + '년 ' + ${reservation.month} + '월 ' + ${reservation.day} + '일'"></td>
+                <td th:text="${reservation.headcount}"></td>
+                <td th:text="${reservation.currTimeStamp}"></td>
+                <td th:text="${reservation.status}"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
