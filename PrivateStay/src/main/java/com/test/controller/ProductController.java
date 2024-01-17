@@ -101,46 +101,7 @@ public class ProductController implements ErrorController {
 			}
 		}
 		
-//		@GetMapping("/sample")
-//		public String handleSampleRequest(
-//		        @RequestParam(name = "selectedYear") int selectedYear,
-//		        @RequestParam(name = "selectedMonth") int selectedMonth,
-//		        @RequestParam(name = "selectedDay") int selectedDay,
-//		        @RequestParam(name = "productCode") int p, HttpSession session) {
-//
-//		    // 가져온 값 사용 예시
-//		    System.out.println("Selected Year: " + selectedYear);
-//		    System.out.println("Selected Month: " + selectedMonth);
-//		    System.out.println("Selected Day: " + selectedDay);
-//		    System.out.println("p: " + p);
-//		    
-//		    String year = Integer.toString(selectedYear);
-//		    String month = Integer.toString(selectedMonth);
-//		    String day = Integer.toString(selectedDay);
-//		    
-//		    if(month.length() == 1) {
-//		    	month = "0" + month;
-//		    }
-//		    if(day.length() == 1) {
-//		    	day = "0" + day;
-//		    }
-//		    
-//		    String stockCode = year + month + day + p;
-//		    
-//		    session.setAttribute("sCode", stockCode);
-//
-//		    // 여기에서 필요에 따라 추가적인 처리 수행
-//		    // 예를 들어, 데이터 처리, 뷰 반환 등
-//
-//		    return ""; // 적절한 뷰 이름으로 반환	   
-//		}
-	
-//	@GetMapping("/calenderForm")
-//	public String stockCalenderPage() {
-//		System.out.println("call~~1111");
-////	    	
-//		return "response/static/calender";
-//	}
+//		
 
 		@GetMapping("/selectForm2")
 		public String selectForm2() {
