@@ -39,15 +39,15 @@
                 <td th:text="${reservation.status}"></td>
                 <td th:text="${reservation.currTimeStamp}"></td>
                 <td>
-                    <a th:if="${reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).RESERVED.name()
-                    or reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).ON_HOLD.name()}" href="#"
+                    <a th:if="${reservation.status.name() == T(com.test.entity.ReservationStatus).RESERVED.name()
+                    or reservation.status.name() == T(com.test.entity.ReservationStatus).ON_HOLD.name()}" href="#"
                        th:href="'javascript:edit('+${reservation.id}+')'"
                        class="btn btn-warning">UPDATE</a>
 
                 </td>
                 <td>
-                    <a th:if="${reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).RESERVED.name()
-                    or reservation.status.name() == T(jpa.privatestay.domain.entity.ReservationStatus).ON_HOLD.name()}" href="#"
+                    <a th:if="${reservation.status.name() == T(com.test.entity.ReservationStatus).RESERVED.name()
+                    or reservation.status.name() == T(com.test.entity.ReservationStatus).ON_HOLD.name()}" href="#"
                        th:href="'javascript:cancel('+${reservation.id}+')'"
                        class="btn btn-danger">CANCEL</a>
 

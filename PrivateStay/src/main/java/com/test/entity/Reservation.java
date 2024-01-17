@@ -55,7 +55,7 @@ public class Reservation {
         Reservation reservation = new Reservation();
         reservation.setUser(user);
         reservation.setStock(stock);
-        stock.setStockQuantity(false);
+        stock.setStockQuantity(false); 
         reservation.setHeadcount(headcount);
         reservation.setCurrTimeStamp(LocalDateTime.now());
         if (status.equals(ReservationStatus.ON_HOLD)) {
