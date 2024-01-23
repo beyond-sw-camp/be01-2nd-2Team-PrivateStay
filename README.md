@@ -1,17 +1,6 @@
 
 <img 
-src="https://capsule-render.vercel.app/api?
-type=wave
-&color=auto
-&reversal=true
-&height=300
-&section=header
-&text=PrivateStay
-&desc=Be01-2nd-2Team
-&textBg=true/
-&fontSize=90
-&fontColor=ffee00
-&animation=fadeIn"
+src="https://capsule-render.vercel.app/api?type=wave&color=auto&reversal=true&height=300&section=header&text=PrivateStay&desc=Be01-2nd-2Team&textBg=true&fontSize=90&fontColor=ffee00&animation=fadeIn"
 />
 
 # PrivateStay
