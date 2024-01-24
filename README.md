@@ -32,6 +32,19 @@ src="https://capsule-render.vercel.app/api?type=wave&color=auto&reversal=true&he
 
 
 # 개발 환경 및 API
+| Frontend |
+|:---------------------:|
+| ![HTML5](https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![Bootstrap](https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white) ![Thymeleaf](https://img.shields.io/badge/thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white) |
+
+| Backend |
+|:--------------------:|
+| ![MariaDB](https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white) ![Java](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white) ![Spring](https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white) ![Spring Boot](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white) ![STS](https://img.shields.io/badge/STS-6DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) ![Apache Maven](https://img.shields.io/badge/apachemaven-C71A36.svg?style=for-the-badge&logo=apachemaven&logoColor=white) ![Lombok](https://img.shields.io/badge/lombok-C70D2C.svg?style=for-the-badge&logo=lombok&logoColor=white) ![REST API](https://img.shields.io/badge/RESTapi-1997B5?style=for-the-badge&logo=java&logoColor=white) |
+
+
+| Collaboration Tools |
+|:-------------------:|
+| ![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)  ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white) |
+
 
 
 # 요구사항 명세서 
@@ -66,18 +79,7 @@ src="https://capsule-render.vercel.app/api?type=wave&color=auto&reversal=true&he
 # 계층 구조 설계
 
 
-# 개발 환경 및 API
-| Frontend |
-|:---------------------:|
-| ![HTML5](https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![Bootstrap](https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white) ![Thymeleaf](https://img.shields.io/badge/thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white) |
 
-| Backend |
-|:---------------------:|
-| |
-
-| etc |
-|:---------------------:|
-| |
 
 
 
