@@ -12,9 +12,9 @@ Be01 - 2nd - 2Team
 
 
 ## 🪪 팀원 및 역할 분담
-- 정수민 : <strong>팀장</strong>, User 테이블 담당,
+- 정수민 : <strong>팀장</strong>, User 테이블 담당, Reservation 구현
 - 김정민 : Reservation 파트 담당,
-- 윤채영 : Product, Stock 파트 담당,
+- 윤채영 : Product, Stock 파트 담당, Reservation 구현
 - 임성현 : Business, Company 테이블 담당, 
 
 ## ✔️ 프로젝트 주요 기능
