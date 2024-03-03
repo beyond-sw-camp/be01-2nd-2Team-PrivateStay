@@ -73,14 +73,13 @@ Be01 - 2nd - 2Team
 |예약 변경 및 취소 정책 설정|(CRUD 기능 사용)|
 
 ## 🛠️ 기능 명세서
-참조: https://github.com/beyond-sw-camp/be01-2nd-2Team-PrivateStay/blob/main/Documents/2_PrivateStay_%EA%B8%B0%EB%8A%A5%EB%AA%85%EC%84%B8%EC%84%9C.xlsx
+참조: [기능명세서](https://github.com/beyond-sw-camp/be01-2nd-2Team-PrivateStay/blob/main/Documents/2_PrivateStay_%EA%B8%B0%EB%8A%A5%EB%AA%85%EC%84%B8%EC%84%9C.xlsx)
 
 ## 💾 DB 설계
-참조: https://github.com/beyond-sw-camp/be01-2nd-2Team-PrivateStay/blob/main/Documents/3_PrivateStay_%EC%84%A4%EA%B3%84%20%EB%AC%B8%EC%84%9C%20%EB%B0%8F%20DataBase%20%EC%84%A4%EA%B3%84%20%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%ED%8C%8C%EC%9D%BC(DDL).pdf
+참조: [설계 문서 및 DataBase 설계 스크립트 파일(DDL)
+](https://github.com/beyond-sw-camp/be01-2nd-2Team-PrivateStay/blob/main/Documents/3_PrivateStay_%EC%84%A4%EA%B3%84%20%EB%AC%B8%EC%84%9C%20%EB%B0%8F%20DataBase%20%EC%84%A4%EA%B3%84%20%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%ED%8C%8C%EC%9D%BC(DDL).pdf)
 
 ## 📐 계층 구조 설계
-
-
 
 
 
